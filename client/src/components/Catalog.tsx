@@ -324,34 +324,34 @@ export default function Catalog() {
               <AlertDialogTitle className="font-heading text-xl">
                 Request Quote for {quoteProduct?.name}
               </AlertDialogTitle>
-              <AlertDialogDescription className="space-y-4">
-                <p>Thank you for your interest in our premium architectural vinyl wrap!</p>
-                <div className="bg-muted/50 p-4 rounded-lg space-y-3">
-                  <button 
-                    className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
-                    onClick={() => window.open('tel:+15551239727', '_self')}
-                    data-testid="button-call-quote"
-                  >
-                    <Phone className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Call us at <strong>(555) 123-WRAP</strong></span>
-                  </button>
-                  <button 
-                    className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
-                    onClick={() => window.open('mailto:info@decobluusa.com', '_self')}
-                    data-testid="button-email-quote"
-                  >
-                    <Mail className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Email <strong>info@decobluusa.com</strong></span>
-                  </button>
-                  {quoteProduct && (
-                    <div className="pt-2 border-t border-muted">
-                      <span className="text-sm text-muted-foreground">
-                        Product Code: <strong>{quoteProduct.name.split(' ').pop()}</strong>
-                      </span>
-                    </div>
-                  )}
-                </div>
+              <AlertDialogDescription>
+                Thank you for your interest in our premium architectural vinyl wrap!
               </AlertDialogDescription>
+              <div className="bg-muted/50 p-4 rounded-lg space-y-3">
+                <button 
+                  className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
+                  onClick={() => window.open('tel:+15551239727', '_self')}
+                  data-testid="button-call-quote"
+                >
+                  <Phone className="h-4 w-4 text-primary" />
+                  <span className="text-sm">Call us at <strong>(555) 123-WRAP</strong></span>
+                </button>
+                <button 
+                  className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
+                  onClick={() => window.open('mailto:info@decobluusa.com', '_self')}
+                  data-testid="button-email-quote"
+                >
+                  <Mail className="h-4 w-4 text-primary" />
+                  <span className="text-sm">Email <strong>info@decobluusa.com</strong></span>
+                </button>
+                {quoteProduct && (
+                  <div className="pt-2 border-t border-muted">
+                    <span className="text-sm text-muted-foreground">
+                      Product Code: <strong>{quoteProduct.name.split(' ').pop()}</strong>
+                    </span>
+                  </div>
+                )}
+              </div>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogAction onClick={() => setQuoteDialogOpen(false)}>

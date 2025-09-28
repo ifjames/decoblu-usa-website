@@ -1,7 +1,17 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, Twitter } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { 
   AlertDialog, 
   AlertDialogAction, 
@@ -13,163 +23,283 @@ import {
 } from '@/components/ui/alert-dialog';
 import ScrollAnimation from './ScrollAnimation';
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: 'Location',
-    details: ['123 Vinyl Wrap Street', 'Los Angeles, CA 90210'],
-  },
-  {
-    icon: Phone,
-    title: 'Phone',
-    details: ['(555) 123-WRAP', '(555) 123-9727'],
-  },
-  {
-    icon: Mail,
-    title: 'Email',
-    details: ['info@decobluusa.com', 'quotes@decobluusa.com'],
-  },
-  {
-    icon: Clock,
-    title: 'Hours',
-    details: ['Monday - Friday', '8:00 AM - 6:00 PM'],
-  },
+const categoryPages = [
+  { label: 'Wrapping', href: '/catalog' },
+  { label: 'Window & Light Tinting', href: '/catalog' },
+  { label: 'Caliper Painting', href: '/catalog' },
+  { label: 'Carbon Fibre Wraps', href: '/catalog' },
+  { label: 'Paint Protection Film', href: '/catalog' },
+  { label: 'CeramicPRO Coating', href: '/catalog' },
+  { label: 'De-chroming', href: '/catalog' },
+  { label: 'Interior Wraps', href: '/catalog' },
+  { label: 'Commercial', href: '/catalog' },
+  { label: 'Design', href: '/catalog' },
+  { label: 'Online Shop', href: '/catalog' },
+];
+
+const serviceOptions = [
+  'Wrapping',
+  'Window & Light Tinting', 
+  'Caliper Painting',
+  'Carbon Fibre Wraps',
+  'Paint Protection Film',
+  'CeramicPRO Coating',
+  'De-chroming',
+  'Interior Wraps',
+  'Commercial',
+  'Design'
+];
+
+const socialLinks = [
+  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Youtube, href: '#', label: 'YouTube' },
+  { icon: Twitter, href: '#', label: 'Twitter' },
 ];
 
 export default function Contact() {
-  const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    confirmEmail: '',
+    vehicleMakeModel: '',
+    registration: '',
+    services: '',
+    message: ''
+  });
+
+  const [successDialogOpen, setSuccessDialogOpen] = useState(false);
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    setSuccessDialogOpen(true);
+    console.log('Form submitted:', formData);
+  };
+
   return (
-    <section id="contact" className="py-24 bg-muted/30">
+    <section id="contact" className="py-24 bg-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <ScrollAnimation className="text-center mb-16">
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-            Where to Find Us!
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Visit our state-of-the-art facility specializing in architectural vinyl applications or get in touch with our expert team.
-          </p>
-        </ScrollAnimation>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Info */}
-          <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-              {contactInfo.map((info, index) => {
-                const Icon = info.icon;
-                return (
-                  <ScrollAnimation key={index} delay={index * 0.1} direction="up">
-                  <Card className="hover-elevate transition-all duration-300 h-full">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                          <Icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <CardTitle className="text-lg">{info.title}</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      {info.details.map((detail, detailIndex) => (
-                        <p key={detailIndex} className="text-muted-foreground">
-                          {detail}
-                        </p>
-                      ))}
-                    </CardContent>
-                  </Card>
-                  </ScrollAnimation>
-                );
-              })}
-            </div>
-
-            {/* CTA */}
-            <ScrollAnimation direction="left">
-            <div className="text-center lg:text-left">
-              <p className="text-lg text-muted-foreground mb-6">
-                Ready to transform your interior space with premium architectural vinyl wraps?
+          {/* Left Side - General Enquiries */}
+          <div className="space-y-8">
+            <ScrollAnimation>
+              <h2 className="font-heading font-bold text-3xl text-white mb-6">
+                GENERAL ENQUIRIES
+              </h2>
+              <p className="text-gray-300 mb-8">
+                For specific services, please use the quote form on each category page. For general 
+                or other enquiries, contact us here.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg" 
-                  data-testid="button-get-quote-contact"
-                  onClick={() => setQuoteDialogOpen(true)}
-                >
-                  Get Free Quote
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  data-testid="button-call-now"
-                  onClick={() => window.open('tel:+15551239727', '_self')}
-                >
-                  Call Now
-                </Button>
+            </ScrollAnimation>
+
+            {/* Quick Navigation */}
+            <ScrollAnimation delay={0.1}>
+              <div className="mb-8">
+                <h3 className="font-semibold text-lg mb-4">Quick Navigation to category pages</h3>
+                <div className="space-y-2">
+                  {categoryPages.map((page, index) => (
+                    <a
+                      key={index}
+                      href={page.href}
+                      className="block text-gray-400 hover:text-white transition-colors underline"
+                    >
+                      {page.label}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            </ScrollAnimation>
+
+            {/* Contact Information */}
+            <ScrollAnimation delay={0.2}>
+              <div className="space-y-4">
+                <div className="text-white">
+                  <strong>+44 (0) 2380 236 001</strong>
+                </div>
+                <div className="text-white">
+                  <strong>sales@monsterwraps.co.uk</strong>
+                </div>
+                <div className="text-gray-300">
+                  Unit 2F Herald Ind Estate, Hedge End, Southampton SO30 2JW
+                </div>
+              </div>
+            </ScrollAnimation>
+
+            {/* Social Media Icons */}
+            <ScrollAnimation delay={0.3}>
+              <div className="flex space-x-4 pt-4">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      className="w-8 h-8 text-gray-400 hover:text-white transition-colors"
+                      aria-label={social.label}
+                    >
+                      <Icon className="h-6 w-6" />
+                    </a>
+                  );
+                })}
+              </div>
             </ScrollAnimation>
           </div>
 
-          {/* Map Placeholder */}
-          <ScrollAnimation direction="right">
-          <div className="relative">
-            <div className="aspect-video bg-muted rounded-lg overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
-                  <h3 className="font-heading font-semibold text-xl mb-2">Visit Our Showroom</h3>
-                  <p className="text-muted-foreground">
-                    Experience our architectural vinyl samples in person.
-                  </p>
+          {/* Right Side - Contact Form */}
+          <ScrollAnimation direction="right" delay={0.1}>
+            <form onSubmit={handleSubmit} className="space-y-6 bg-gray-800 p-0">
+              {/* Name Fields */}
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-white">Name (required)</Label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="firstName" className="text-sm text-gray-400">First Name</Label>
+                    <Input
+                      id="firstName"
+                      value={formData.firstName}
+                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName" className="text-sm text-gray-400">Last Name</Label>
+                    <Input
+                      id="lastName"
+                      value={formData.lastName}
+                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Location Badge */}
-            <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-lg p-3 shadow-lg">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium">Los Angeles, CA</span>
+
+              {/* Contact Phone Number */}
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-white">Contact Phone Number (required)</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
+                  required
+                />
               </div>
-            </div>
-          </div>
+
+              {/* Email */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-white">Email (required)</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
+                  required
+                />
+              </div>
+
+              {/* Confirm Email */}
+              <div className="space-y-2">
+                <Label htmlFor="confirmEmail" className="text-white">Confirm Email (required)</Label>
+                <Input
+                  id="confirmEmail"
+                  type="email"
+                  value={formData.confirmEmail}
+                  onChange={(e) => handleInputChange('confirmEmail', e.target.value)}
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
+                  required
+                />
+              </div>
+
+              {/* Vehicle Make and Model */}
+              <div className="space-y-2">
+                <Label htmlFor="vehicleMakeModel" className="text-white">Vehicle Make and Model (required)</Label>
+                <Input
+                  id="vehicleMakeModel"
+                  value={formData.vehicleMakeModel}
+                  onChange={(e) => handleInputChange('vehicleMakeModel', e.target.value)}
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
+                  required
+                />
+              </div>
+
+              {/* Registration Number */}
+              <div className="space-y-2">
+                <Label htmlFor="registration" className="text-white">Registration Number</Label>
+                <Input
+                  id="registration"
+                  value={formData.registration}
+                  onChange={(e) => handleInputChange('registration', e.target.value)}
+                  placeholder="If unknown please put N/A"
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
+                />
+              </div>
+
+              {/* Services */}
+              <div className="space-y-2">
+                <Label htmlFor="services" className="text-white">Which service(s) are you interested in? (required)</Label>
+                <Select value={formData.services} onValueChange={(value) => handleInputChange('services', value)}>
+                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                    <SelectValue placeholder="Select an option" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-700 border-gray-600">
+                    {serviceOptions.map((service) => (
+                      <SelectItem key={service} value={service} className="text-white hover:bg-gray-600">
+                        {service}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Message */}
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-white">How can we help? (required)</Label>
+                <p className="text-sm text-gray-400">Don't forget to add photos to assist us with your quotation when prompted after you have submitted your enquiry</p>
+                <Textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={(e) => handleInputChange('message', e.target.value)}
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500 min-h-[120px]"
+                  required
+                />
+              </div>
+
+              {/* Submit Button */}
+              <Button 
+                type="submit" 
+                className="bg-gray-600 hover:bg-gray-500 text-white px-8 py-2"
+              >
+                SUBMIT
+              </Button>
+            </form>
           </ScrollAnimation>
         </div>
 
-        {/* Quote Request Dialog */}
-        <AlertDialog open={quoteDialogOpen} onOpenChange={setQuoteDialogOpen}>
-          <AlertDialogContent className="max-w-md">
+        {/* Success Dialog */}
+        <AlertDialog open={successDialogOpen} onOpenChange={setSuccessDialogOpen}>
+          <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle className="font-heading text-xl">
-                Get Your Free Quote
-              </AlertDialogTitle>
-              <AlertDialogDescription className="space-y-4">
-                <p>Thank you for your interest in our premium architectural vinyl wraps!</p>
-                <div className="bg-muted/50 p-4 rounded-lg space-y-3">
-                  <button 
-                    className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
-                    onClick={() => window.open('tel:+15551239727', '_self')}
-                    data-testid="button-call-contact-quote"
-                  >
-                    <Phone className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Call us at <strong>(555) 123-WRAP</strong></span>
-                  </button>
-                  <button 
-                    className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
-                    onClick={() => window.open('mailto:info@decobluusa.com', '_self')}
-                    data-testid="button-email-contact-quote"
-                  >
-                    <Mail className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Email <strong>info@decobluusa.com</strong></span>
-                  </button>
-                  <div className="pt-2 border-t border-muted">
-                    <span className="text-sm text-muted-foreground">
-                      We'll provide a detailed quote for your project within 24 hours.
-                    </span>
-                  </div>
-                </div>
+              <AlertDialogTitle>Thank You!</AlertDialogTitle>
+              <AlertDialogDescription>
+                Your enquiry has been submitted successfully. We'll get back to you within 24 hours.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogAction onClick={() => setQuoteDialogOpen(false)}>
+              <AlertDialogAction onClick={() => setSuccessDialogOpen(false)}>
                 Perfect, thanks!
               </AlertDialogAction>
             </AlertDialogFooter>
