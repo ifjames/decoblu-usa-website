@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { 
+  AlertDialog, 
+  AlertDialogAction, 
+  AlertDialogContent, 
+  AlertDialogDescription, 
+  AlertDialogFooter, 
+  AlertDialogHeader, 
+  AlertDialogTitle 
+} from '@/components/ui/alert-dialog';
 import ScrollAnimation from './ScrollAnimation';
 
 const contactInfo = [
@@ -27,6 +37,7 @@ const contactInfo = [
 ];
 
 export default function Contact() {
+  const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
   return (
     <section id="contact" className="py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +91,7 @@ export default function Contact() {
                 <Button 
                   size="lg" 
                   data-testid="button-get-quote-contact"
-                  onClick={() => alert('Thank you for your interest! Please call us at (555) 123-WRAP or email info@decobluusa.com for a free quote.')}
+                  onClick={() => setQuoteDialogOpen(true)}
                 >
                   Get Free Quote
                 </Button>
@@ -122,6 +133,48 @@ export default function Contact() {
           </div>
           </ScrollAnimation>
         </div>
+
+        {/* Quote Request Dialog */}
+        <AlertDialog open={quoteDialogOpen} onOpenChange={setQuoteDialogOpen}>
+          <AlertDialogContent className="max-w-md">
+            <AlertDialogHeader>
+              <AlertDialogTitle className="font-heading text-xl">
+                Get Your Free Quote
+              </AlertDialogTitle>
+              <AlertDialogDescription className="space-y-4">
+                <p>Thank you for your interest in our premium architectural vinyl wraps!</p>
+                <div className="bg-muted/50 p-4 rounded-lg space-y-3">
+                  <button 
+                    className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
+                    onClick={() => window.open('tel:+15551239727', '_self')}
+                    data-testid="button-call-contact-quote"
+                  >
+                    <Phone className="h-4 w-4 text-primary" />
+                    <span className="text-sm">Call us at <strong>(555) 123-WRAP</strong></span>
+                  </button>
+                  <button 
+                    className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
+                    onClick={() => window.open('mailto:info@decobluusa.com', '_self')}
+                    data-testid="button-email-contact-quote"
+                  >
+                    <Mail className="h-4 w-4 text-primary" />
+                    <span className="text-sm">Email <strong>info@decobluusa.com</strong></span>
+                  </button>
+                  <div className="pt-2 border-t border-muted">
+                    <span className="text-sm text-muted-foreground">
+                      We'll provide a detailed quote for your project within 24 hours.
+                    </span>
+                  </div>
+                </div>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={() => setQuoteDialogOpen(false)}>
+                Perfect, thanks!
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </section>
   );

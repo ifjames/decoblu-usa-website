@@ -1,9 +1,18 @@
 import { useState } from 'react';
-import { Search, Filter, Star } from 'lucide-react';
+import { Search, Filter, Star, Phone, Mail } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { 
+  AlertDialog, 
+  AlertDialogAction, 
+  AlertDialogContent, 
+  AlertDialogDescription, 
+  AlertDialogFooter, 
+  AlertDialogHeader, 
+  AlertDialogTitle 
+} from '@/components/ui/alert-dialog';
 import ScrollAnimation from './ScrollAnimation';
 import catalogPage1 from '@assets/Infeel_V17_digital_catalog_page-0004.jpg';
 import catalogPage2 from '@assets/Infeel_V17_digital_catalog_page-0005.jpg';
@@ -105,6 +114,8 @@ export default function Catalog() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedProduct, setSelectedProduct] = useState<typeof vinylWraps[0] | null>(null);
+  const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
+  const [quoteProduct, setQuoteProduct] = useState<typeof vinylWraps[0] | null>(null);
 
   const filteredWraps = vinylWraps.filter(wrap => {
     const matchesSearch = wrap.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -204,7 +215,8 @@ export default function Catalog() {
                     data-testid={`button-quote-${wrap.id}`}
                     onClick={(e) => {
                       e.stopPropagation();
-                      alert(`Request a quote for ${wrap.name}. Please call (555) 123-WRAP or email info@decobluusa.com with product code ${wrap.name.split(' ').pop()}.`);
+                      setQuoteProduct(wrap);
+                      setQuoteDialogOpen(true);
                     }}
                   >
                     Get Quote
@@ -289,7 +301,8 @@ export default function Catalog() {
                     size="lg" 
                     data-testid="button-quote-modal"
                     onClick={() => {
-                      alert(`Request a quote for ${selectedProduct.name}. Please call (555) 123-WRAP or email info@decobluusa.com with product code ${selectedProduct.name.split(' ').pop()}.`);
+                      setQuoteProduct(selectedProduct);
+                      setQuoteDialogOpen(true);
                       setSelectedProduct(null);
                     }}
                   >
@@ -300,6 +313,53 @@ export default function Catalog() {
             </Card>
           </div>
         )}
+
+        {/* Quote Request Dialog */}
+        <AlertDialog open={quoteDialogOpen} onOpenChange={(open) => {
+          setQuoteDialogOpen(open);
+          if (!open) setQuoteProduct(null);
+        }}>
+          <AlertDialogContent className="max-w-md">
+            <AlertDialogHeader>
+              <AlertDialogTitle className="font-heading text-xl">
+                Request Quote for {quoteProduct?.name}
+              </AlertDialogTitle>
+              <AlertDialogDescription className="space-y-4">
+                <p>Thank you for your interest in our premium architectural vinyl wrap!</p>
+                <div className="bg-muted/50 p-4 rounded-lg space-y-3">
+                  <button 
+                    className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
+                    onClick={() => window.open('tel:+15551239727', '_self')}
+                    data-testid="button-call-quote"
+                  >
+                    <Phone className="h-4 w-4 text-primary" />
+                    <span className="text-sm">Call us at <strong>(555) 123-WRAP</strong></span>
+                  </button>
+                  <button 
+                    className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
+                    onClick={() => window.open('mailto:info@decobluusa.com', '_self')}
+                    data-testid="button-email-quote"
+                  >
+                    <Mail className="h-4 w-4 text-primary" />
+                    <span className="text-sm">Email <strong>info@decobluusa.com</strong></span>
+                  </button>
+                  {quoteProduct && (
+                    <div className="pt-2 border-t border-muted">
+                      <span className="text-sm text-muted-foreground">
+                        Product Code: <strong>{quoteProduct.name.split(' ').pop()}</strong>
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={() => setQuoteDialogOpen(false)}>
+                Got it, thanks!
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );
