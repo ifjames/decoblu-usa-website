@@ -1,27 +1,28 @@
 import { Star, Quote } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import technicianImage from '@assets/generated_images/Professional_automotive_technician_portrait_b0f06a42.png';
+import ScrollAnimation from './ScrollAnimation';
+import technicianImage from '@assets/Infeel_V17_digital_catalog_page-0003.jpg';
 
 const testimonials = [
   {
-    name: 'Michael Johnson',
-    role: 'BMW Owner',
+    name: 'Jennifer Martinez',
+    role: 'Restaurant Owner',
     rating: 5,
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excellent communication and easy booking system. Very happy with the vinyl wrap on my BMW! Wouldn\'t go anywhere else for wraps in the future!',
-    avatar: technicianImage,
+    content: 'Deco Blu USA transformed our restaurant\'s interior completely. The cabinet wrapping looks absolutely stunning and has held up perfectly over two years. Excellent communication and professional installation.',
+    avatar: null,
   },
   {
-    name: 'Sarah Williams',
-    role: 'Tesla Owner',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. After doing research on companies in the area I was lucky enough to find Deco Blu USA. If you\'re serious about getting your car wrapped and you want a first class job at the right price DO NOT go anywhere else.',
+    name: 'Robert Chen',
+    role: 'Hotel Manager',
+    content: 'After researching architectural vinyl companies, we chose Deco Blu USA for our hotel renovation. If you\'re serious about quality interior transformation at the right price, this is the company to choose.',
     rating: 5,
     avatar: null,
   },
   {
-    name: 'David Chen',
-    role: 'Mercedes Owner',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Exceptionally friendly and extremely knowledgeable. No pushy sales tactics, very easy to deal with. The Mercedes looks amazing, thank you very much. Highly recommended!',
+    name: 'Amanda Foster',
+    role: 'Homeowner',
+    content: 'Exceptionally friendly and extremely knowledgeable team. No pushy sales tactics, very easy to work with. Our kitchen cabinet transformation looks amazing - highly recommended for any interior project!',
     rating: 5,
     avatar: null,
   },
@@ -32,19 +33,20 @@ export default function Testimonials() {
     <section className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <ScrollAnimation className="text-center mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
             Testimonials
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Hear what our satisfied customers say about their architectural vinyl transformation projects.
           </p>
-        </div>
+        </ScrollAnimation>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="hover-elevate transition-all duration-300" data-testid={`card-testimonial-${index}`}>
+            <ScrollAnimation key={index} delay={index * 0.2} direction="up">
+            <Card className="hover-elevate transition-all duration-300 h-full" data-testid={`card-testimonial-${index}`}>
               <CardContent className="p-6">
                 {/* Stars */}
                 <div className="flex items-center mb-4">
@@ -76,6 +78,7 @@ export default function Testimonials() {
                 </div>
               </CardContent>
             </Card>
+            </ScrollAnimation>
           ))}
         </div>
       </div>

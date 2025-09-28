@@ -4,96 +4,102 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import vinylSamplesImage from '@assets/generated_images/Blue_vinyl_material_samples_e7b2a9ac.png';
+import ScrollAnimation from './ScrollAnimation';
+import catalogPage1 from '@assets/Infeel_V17_digital_catalog_page-0004.jpg';
+import catalogPage2 from '@assets/Infeel_V17_digital_catalog_page-0005.jpg';
+import catalogPage3 from '@assets/Infeel_V17_digital_catalog_page-0006.jpg';
+import catalogPage4 from '@assets/Infeel_V17_digital_catalog_page-0007.jpg';
+import catalogPage5 from '@assets/Infeel_V17_digital_catalog_page-0008.jpg';
+import catalogPage6 from '@assets/Infeel_V17_digital_catalog_page-0009.jpg';
 
 const vinylWraps = [
   {
     id: 1,
-    name: 'Ocean Blue Metallic',
-    category: 'Color Change',
-    material: '3M 1080 Series',
-    finish: 'Metallic',
-    durability: '7 years',
-    price: '$2,500',
+    name: 'Premium Solid PS 103',
+    category: 'Premium Solid',
+    material: 'Infeel V17 Series',
+    finish: 'Solid Premium',
+    durability: '15+ years',
+    price: '$45/sqft',
     rating: 4.9,
-    image: vinylSamplesImage,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Premium metallic finish with excellent durability.',
-    variants: ['Gloss', 'Satin'],
-    features: ['UV Resistant', 'Easy Removal', 'Air Release'],
+    image: catalogPage1,
+    description: 'Premium solid finish for high-end architectural applications. Perfect for cabinets and walls.',
+    variants: ['Gloss', 'Matte'],
+    features: ['Fire Resistant', 'Easy Clean', 'Scratch Resistant'],
   },
   {
     id: 2,
-    name: 'Midnight Blue Matte',
-    category: 'Color Change',
-    material: 'Avery Dennison',
-    finish: 'Matte',
-    durability: '5 years',
-    price: '$2,200',
+    name: 'Solid Matt SM 816',
+    category: 'Solid Matt',
+    material: 'Infeel V17 Series',
+    finish: 'Matt',
+    durability: '12+ years',
+    price: '$38/sqft',
     rating: 4.8,
-    image: vinylSamplesImage,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sophisticated matte finish for modern vehicles.',
-    variants: ['Deep Matte', 'Satin Matte'],
-    features: ['Scratch Resistant', 'Easy Install', 'Conformable'],
+    image: catalogPage2,
+    description: 'Sophisticated matte finish ideal for modern interior designs and cabinet applications.',
+    variants: ['Deep Matt', 'Light Matt'],
+    features: ['Anti-Fingerprint', 'Easy Install', 'Durable'],
   },
   {
     id: 3,
-    name: 'Electric Blue Chrome',
-    category: 'Specialty',
-    material: '3M 2080 Series',
-    finish: 'Chrome',
-    durability: '3 years',
-    price: '$3,500',
-    rating: 4.7,
-    image: vinylSamplesImage,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. High-impact chrome finish for attention-grabbing results.',
-    variants: ['Mirror Chrome', 'Brushed Chrome'],
-    features: ['High Gloss', 'Show Quality', 'Professional Only'],
+    name: 'Wood Grain WD 234',
+    category: 'Wood',
+    material: 'Infeel V17 Wood Series',
+    finish: 'Wood Texture',
+    durability: '10+ years',
+    price: '$52/sqft',
+    rating: 4.9,
+    image: catalogPage3,
+    description: 'Authentic wood grain texture for natural-looking cabinet and wall applications.',
+    variants: ['Light Oak', 'Dark Walnut'],
+    features: ['Textured Surface', 'Natural Look', 'Moisture Resistant'],
   },
   {
     id: 4,
-    name: 'Carbon Fiber Blue',
-    category: 'Textured',
-    material: '3M DI-NOC',
-    finish: 'Carbon Fiber',
-    durability: '10 years',
-    price: '$2,800',
-    rating: 4.9,
-    image: vinylSamplesImage,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Authentic carbon fiber texture with blue tint.',
-    variants: ['3K Weave', '6K Weave'],
-    features: ['Textured Feel', 'Architectural Grade', 'Interior/Exterior'],
+    name: 'Metal Finish MT 209',
+    category: 'Metal',
+    material: 'Infeel V17 Metal Series',
+    finish: 'Brushed Metal',
+    durability: '12+ years',
+    price: '$48/sqft',
+    rating: 4.7,
+    image: catalogPage4,
+    description: 'Premium brushed metal finish for contemporary architectural applications.',
+    variants: ['Brushed Steel', 'Brushed Aluminum'],
+    features: ['Metallic Sheen', 'Architectural Grade', 'Corrosion Resistant'],
   },
   {
     id: 5,
-    name: 'Sapphire Blue Pearl',
-    category: 'Premium',
-    material: 'KPMF K75000',
-    finish: 'Pearl',
-    durability: '8 years',
-    price: '$3,200',
+    name: 'Stone Texture ST 110',
+    category: 'Stone',
+    material: 'Infeel V17 Stone Series',
+    finish: 'Natural Stone',
+    durability: '15+ years',
+    price: '$55/sqft',
     rating: 5.0,
-    image: vinylSamplesImage,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Premium pearl finish that changes with lighting.',
-    variants: ['Deep Pearl', 'Light Pearl'],
-    features: ['Color Shift', 'Premium Quality', 'Show Finish'],
+    image: catalogPage5,
+    description: 'Natural stone texture perfect for feature walls and architectural elements.',
+    variants: ['Marble', 'Granite'],
+    features: ['Natural Texture', 'Premium Quality', 'Heat Resistant'],
   },
   {
     id: 6,
-    name: 'Royal Blue Gloss',
-    category: 'Color Change',
-    material: '3M 1080 Series',
-    finish: 'Gloss',
-    durability: '7 years',
-    price: '$2,300',
-    rating: 4.8,
-    image: vinylSamplesImage,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Classic high-gloss finish in royal blue.',
-    variants: ['High Gloss', 'Deep Gloss'],
-    features: ['Easy Clean', 'UV Stable', 'OEM Quality'],
+    name: 'Fabric Pattern FB 851',
+    category: 'Fabric',
+    material: 'Infeel V17 Fabric Series',
+    finish: 'Textile',
+    durability: '8+ years',
+    price: '$42/sqft',
+    rating: 4.6,
+    image: catalogPage6,
+    description: 'Sophisticated fabric texture for luxury interior design applications.',
+    variants: ['Linen', 'Canvas'],
+    features: ['Soft Touch', 'Elegant Look', 'Easy Maintenance'],
   },
 ];
 
-const categories = ['All', 'Color Change', 'Specialty', 'Textured', 'Premium'];
+const categories = ['All', 'Premium Solid', 'Solid Matt', 'Wood', 'Metal', 'Stone', 'Fabric'];
 
 export default function Catalog() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -111,14 +117,14 @@ export default function Catalog() {
     <div className="min-h-screen bg-background pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <ScrollAnimation className="text-center mb-12">
           <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-            Vinyl Wrap Catalog
+            Infeel V17 Catalog
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Explore our premium collection of vinyl wraps and materials.
+            Explore our comprehensive collection of premium architectural vinyl wraps from the Infeel V17 series for interior applications.
           </p>
-        </div>
+        </ScrollAnimation>
 
         {/* Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
@@ -149,10 +155,10 @@ export default function Catalog() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {filteredWraps.map((wrap) => (
+          {filteredWraps.map((wrap, index) => (
+            <ScrollAnimation key={wrap.id} delay={index * 0.1} direction="up">
             <Card 
-              key={wrap.id} 
-              className="group hover-elevate transition-all duration-300 cursor-pointer"
+              className="group hover-elevate transition-all duration-300 cursor-pointer h-full"
               onClick={() => setSelectedProduct(wrap)}
               data-testid={`card-product-${wrap.id}`}
             >
@@ -199,6 +205,7 @@ export default function Catalog() {
                 </div>
               </CardContent>
             </Card>
+            </ScrollAnimation>
           ))}
         </div>
 

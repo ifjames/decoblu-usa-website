@@ -1,6 +1,7 @@
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import ScrollAnimation from './ScrollAnimation';
 
 const contactInfo = [
   {
@@ -30,14 +31,14 @@ export default function Contact() {
     <section id="contact" className="py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <ScrollAnimation className="text-center mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
             Where to Find Us!
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Visit our state-of-the-art facility or get in touch with our team.
+            Visit our state-of-the-art facility specializing in architectural vinyl applications or get in touch with our expert team.
           </p>
-        </div>
+        </ScrollAnimation>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Info */}
@@ -46,7 +47,8 @@ export default function Contact() {
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
-                  <Card key={index} className="hover-elevate transition-all duration-300">
+                  <ScrollAnimation key={index} delay={index * 0.1} direction="up">
+                  <Card className="hover-elevate transition-all duration-300 h-full">
                     <CardHeader className="pb-3">
                       <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
@@ -63,14 +65,16 @@ export default function Contact() {
                       ))}
                     </CardContent>
                   </Card>
+                  </ScrollAnimation>
                 );
               })}
             </div>
 
             {/* CTA */}
+            <ScrollAnimation direction="left">
             <div className="text-center lg:text-left">
               <p className="text-lg text-muted-foreground mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ready to transform your vehicle?
+                Ready to transform your interior space with premium architectural vinyl wraps?
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" data-testid="button-get-quote-contact">
@@ -81,17 +85,19 @@ export default function Contact() {
                 </Button>
               </div>
             </div>
+            </ScrollAnimation>
           </div>
 
           {/* Map Placeholder */}
+          <ScrollAnimation direction="right">
           <div className="relative">
             <div className="aspect-video bg-muted rounded-lg overflow-hidden">
               <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
                 <div className="text-center">
                   <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
-                  <h3 className="font-heading font-semibold text-xl mb-2">Visit Our Facility</h3>
+                  <h3 className="font-heading font-semibold text-xl mb-2">Visit Our Showroom</h3>
                   <p className="text-muted-foreground">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Experience our architectural vinyl samples in person.
                   </p>
                 </div>
               </div>
@@ -105,6 +111,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
+          </ScrollAnimation>
         </div>
       </div>
     </section>

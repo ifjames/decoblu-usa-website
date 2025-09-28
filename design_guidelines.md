@@ -1,7 +1,7 @@
-# Design Guidelines for Deco Blu USA Vinyl Wrap Showcase
+# Design Guidelines for Deco Blu USA Architectural Vinyl Wrap Showcase
 
 ## Design Approach
-**Reference-Based Approach**: Directly inspired by monsterwraps.co.uk design structure with modern blue theme adaptation. The site focuses on visual showcase and customer engagement through dynamic presentation.
+**Reference-Based Approach**: Directly inspired by monsterwraps.co.uk design structure with modern blue theme adaptation. The site focuses on architectural vinyl wraps for cabinets, walls, ceilings, and interior spaces with dynamic presentation and smooth scroll animations.
 
 ## Core Design Elements
 
@@ -40,15 +40,15 @@
 
 ## Page Structure
 
-### Main Page (Single Scroll)
-1. **Hero Section**: Full-screen with "Deco Blu USA" branding, dynamic vinyl wrap background
-2. **Services Grid**: 8-12 vinyl wrap service cards with icons and descriptions
-3. **About Section**: Company story with image gallery
-4. **Testimonials**: Customer reviews with star ratings
-5. **Contact**: Location, hours, and contact information
+### Main Page (Single Scroll with Animations)
+1. **Hero Section**: Full-screen with "Deco Blu USA" branding, dynamic architectural vinyl background
+2. **Services Grid**: 8-12 architectural vinyl services with scroll-triggered animations
+3. **About Section**: Company story with image gallery and parallax effects
+4. **Testimonials**: Customer reviews with staggered entrance animations
+5. **Contact**: Location, hours, and contact information with slide-in effects
 
 ### Catalog Page
-Separate page with filterable grid layout showcasing vinyl wrap products, variants, descriptions, and material specifications.
+Separate page with filterable grid layout showcasing Infeel V17 vinyl wrap products (PS, SL, SM, WD, MT, etc.) with hover animations and modal details.
 
 ## Visual Treatment
 **Modern Minimalism**: Clean lines, generous whitespace, professional presentation
@@ -57,10 +57,10 @@ Separate page with filterable grid layout showcasing vinyl wrap products, varian
 **Professional Aesthetic**: Sophisticated blue theme conveying trust and expertise
 
 ## Images
-**Hero Background**: Large showcase image of premium vinyl-wrapped vehicle (luxury car with blue-tinted wrap)
-**Service Cards**: High-quality close-up shots of different vinyl wrap textures and finishes
-**Gallery**: Before/after vehicle transformation images
-**Catalog**: Professional product shots of vinyl material samples and completed projects
-**About Section**: Workshop/facility images showing professional installation process
+**Hero Background**: Large showcase image of premium vinyl-wrapped interior spaces (cabinets, walls, architectural elements)
+**Service Cards**: High-quality close-up shots of different architectural vinyl textures and finishes
+**Gallery**: Before/after interior transformation images showing cabinets, walls, and ceilings
+**Catalog**: Professional product shots from Infeel V17 catalog pages showing material samples and completed architectural projects
+**About Section**: Workshop/facility images showing professional installation process for interior applications
 
-The website features a large hero image as the primary visual anchor point, with additional supporting imagery throughout to showcase the quality and variety of vinyl wrap services.
+The website features smooth scroll-triggered animations with elements that fade in, slide up, and scale as they enter the viewport, creating an engaging and modern user experience.

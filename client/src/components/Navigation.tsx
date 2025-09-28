@@ -8,12 +8,14 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
 
+  const isHomePage = location === '/';
+  
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/catalog', label: 'Catalog' },
-    { href: '#services', label: 'Services' },
-    { href: '#about', label: 'About' },
-    { href: '#contact', label: 'Contact' }
+    { href: isHomePage ? '#services' : '/#services', label: 'Services' },
+    { href: isHomePage ? '#about' : '/#about', label: 'About' },
+    { href: isHomePage ? '#contact' : '/#contact', label: 'Contact' }
   ];
 
   return (

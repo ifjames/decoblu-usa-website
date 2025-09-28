@@ -1,16 +1,21 @@
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@assets/generated_images/Blue_wrapped_luxury_car_d0cc9c3f.png';
+import { motion } from 'framer-motion';
+import ScrollAnimation from './ScrollAnimation';
+import heroImage from '@assets/Infeel_V17_digital_catalog_page-0001.jpg';
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img
+        <motion.img
           src={heroImage}
-          alt="Premium blue vinyl wrapped luxury car"
+          alt="Premium architectural vinyl wrap catalog showcase"
           className="w-full h-full object-cover"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: 'linear' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
       </div>
@@ -25,18 +30,33 @@ export default function Hero() {
           </div>
 
           {/* Main Heading */}
-          <h1 className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-            Transform Your Vehicle with 
+          <motion.h1 
+            className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Transform Your Interiors with 
             <span className="block text-primary">Premium Vinyl Wraps</span>
-          </h1>
+          </motion.h1>
 
           {/* Subheading */}
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-          </p>
+          <motion.p 
+            className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Professional architectural vinyl solutions for cabinets, walls, ceilings, and interior spaces. Transform any surface with premium quality wraps.
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             <Button 
               size="lg" 
               className="bg-primary text-primary-foreground border-primary-border hover-elevate active-elevate-2"
@@ -53,23 +73,28 @@ export default function Hero() {
             >
               View Catalog
             </Button>
-          </div>
+          </motion.div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto">
+          <motion.div 
+            className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-white mb-2">15+</div>
               <div className="text-sm text-gray-300">Years Experience</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">2000+</div>
-              <div className="text-sm text-gray-300">Vehicles Wrapped</div>
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2">5000+</div>
+              <div className="text-sm text-gray-300">Surfaces Wrapped</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-white mb-2">5★</div>
               <div className="text-sm text-gray-300">Customer Rating</div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
