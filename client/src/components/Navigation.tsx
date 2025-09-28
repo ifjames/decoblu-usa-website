@@ -53,22 +53,53 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b shadow-sm transition-transform duration-300 ease-in-out ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b shadow-lg transition-transform duration-300 ease-in-out ${
       isVisible ? 'translate-y-0' : '-translate-y-full'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20 lg:h-24">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="font-heading font-bold text-2xl">
+            <div className="font-heading font-bold text-2xl lg:text-3xl">
               <span className="text-primary">DecoBlu</span>
               <span className="text-foreground"> USA</span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-10 xl:space-x-12">
             {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-base font-medium transition-colors duration-200 hover:text-primary uppercase tracking-wide ${
+                  location === link.href ? 'text-primary' : 'text-foreground'
+                }`}
+                data-testid={`link-nav-${link.label.toLowerCase()}`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <ThemeToggle />
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:shadow-lg border border-primary"
+              data-testid="button-get-quote"
+              onClick={() => {
+                if (location === '/') {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.location.href = '/#contact';
+                }
+              }}
+            >
+              Get Quote
+            </Button>
+          </div>
+
+          {/* Tablet Navigation */}
+          <div className="hidden md:flex lg:hidden items-center space-x-6">
+            {navLinks.slice(0, 4).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -80,7 +111,6 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
-            <ThemeToggle />
             <Button 
               size="sm" 
               data-testid="button-get-quote"
@@ -104,7 +134,7 @@ export default function Navigation() {
             onClick={() => setIsOpen(!isOpen)}
             data-testid="button-mobile-menu"
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
 
