@@ -40,7 +40,7 @@ export default function Navigation() {
     { href: '/catalog', label: 'Catalog' },
     { href: isHomePage ? '#services' : '/#services', label: 'Services' },
     { href: isHomePage ? '#about' : '/#about', label: 'About' },
-    { href: isHomePage ? '#contact' : '/#contact', label: 'Contact' }
+    { href: '/contact', label: 'Contact' }
   ];
 
   return (
@@ -76,11 +76,7 @@ export default function Navigation() {
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-2 rounded-md transition-all duration-200 hover:shadow-lg border border-primary"
               data-testid="button-get-quote"
               onClick={() => {
-                if (location === '/') {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                  window.location.href = '/#contact';
-                }
+                window.location.href = '/contact';
               }}
             >
               Get Quote
@@ -105,11 +101,7 @@ export default function Navigation() {
               size="sm" 
               data-testid="button-get-quote"
               onClick={() => {
-                if (location === '/') {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                  window.location.href = '/#contact';
-                }
+                window.location.href = '/contact';
               }}
             >
               Get Quote
@@ -152,11 +144,7 @@ export default function Navigation() {
                   data-testid="button-mobile-quote"
                   onClick={() => {
                     setIsOpen(false);
-                    if (location === '/') {
-                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                      window.location.href = '/#contact';
-                    }
+                    window.location.href = '/contact';
                   }}
                 >
                   Get Quote
