@@ -87,206 +87,280 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gray-800 text-white">
+    <section id="contact" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left Side - General Enquiries */}
-          <div className="space-y-8">
-            <ScrollAnimation>
-              <h2 className="font-heading font-bold text-3xl text-white mb-6">
-                GENERAL ENQUIRIES
-              </h2>
-              <p className="text-gray-300 mb-8">
-                For specific services, please use the quote form on each category page. For general 
-                or other enquiries, contact us here.
-              </p>
+        {/* Header */}
+        <ScrollAnimation className="text-center mb-16">
+          <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
+            Get in Touch with{' '}
+            <span className="text-primary">DecoBlu</span>
+            <span className="text-foreground"> USA</span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Ready to transform your interior space? Contact our expert team for a personalized consultation and free quote.
+          </p>
+        </ScrollAnimation>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          {/* Contact Information Cards */}
+          <div className="lg:col-span-1 space-y-6">
+            <ScrollAnimation direction="left">
+              <Card className="hover-elevate transition-all duration-300">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Phone className="h-5 w-5 text-primary" />
+                    </div>
+                    <span>Phone</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-2">Call us directly</p>
+                  <a href="tel:+15551239727" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
+                    (555) 123-WRAP
+                  </a>
+                  <p className="text-sm text-muted-foreground mt-1">Monday - Friday: 8:00 AM - 6:00 PM</p>
+                </CardContent>
+              </Card>
             </ScrollAnimation>
 
-            {/* Quick Navigation */}
-            <ScrollAnimation delay={0.1}>
-              <div className="mb-8">
-                <h3 className="font-semibold text-lg mb-4">Quick Navigation to category pages</h3>
-                <div className="space-y-2">
-                  {categoryPages.map((page, index) => (
+            <ScrollAnimation direction="left" delay={0.1}>
+              <Card className="hover-elevate transition-all duration-300">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Mail className="h-5 w-5 text-primary" />
+                    </div>
+                    <span>Email</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-2">Send us a message</p>
+                  <a href="mailto:info@decobluusa.com" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
+                    info@decobluusa.com
+                  </a>
+                  <p className="text-sm text-muted-foreground mt-1">We respond within 24 hours</p>
+                </CardContent>
+              </Card>
+            </ScrollAnimation>
+
+            <ScrollAnimation direction="left" delay={0.2}>
+              <Card className="hover-elevate transition-all duration-300">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <MapPin className="h-5 w-5 text-primary" />
+                    </div>
+                    <span>Location</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-2">Visit our showroom</p>
+                  <p className="text-foreground font-semibold">123 Vinyl Wrap Street</p>
+                  <p className="text-foreground">Los Angeles, CA 90210</p>
+                </CardContent>
+              </Card>
+            </ScrollAnimation>
+
+            {/* Services Quick Links */}
+            <ScrollAnimation direction="left" delay={0.3}>
+              <Card className="hover-elevate transition-all duration-300">
+                <CardHeader className="pb-4">
+                  <CardTitle>Our Services</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {serviceOptions.slice(0, 6).map((service, index) => (
+                      <a
+                        key={index}
+                        href="/catalog"
+                        className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        • {service}
+                      </a>
+                    ))}
                     <a
-                      key={index}
-                      href={page.href}
-                      className="block text-gray-400 hover:text-white transition-colors underline"
+                      href="/catalog"
+                      className="block text-sm text-primary font-medium hover:underline"
                     >
-                      {page.label}
+                      View all services →
                     </a>
-                  ))}
-                </div>
-              </div>
+                  </div>
+                </CardContent>
+              </Card>
             </ScrollAnimation>
 
-            {/* Contact Information */}
-            <ScrollAnimation delay={0.2}>
-              <div className="space-y-4">
-                <div className="text-white">
-                  <strong>+44 (0) 2380 236 001</strong>
-                </div>
-                <div className="text-white">
-                  <strong>sales@monsterwraps.co.uk</strong>
-                </div>
-                <div className="text-gray-300">
-                  Unit 2F Herald Ind Estate, Hedge End, Southampton SO30 2JW
-                </div>
-              </div>
-            </ScrollAnimation>
-
-            {/* Social Media Icons */}
-            <ScrollAnimation delay={0.3}>
-              <div className="flex space-x-4 pt-4">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      className="w-8 h-8 text-gray-400 hover:text-white transition-colors"
-                      aria-label={social.label}
-                    >
-                      <Icon className="h-6 w-6" />
-                    </a>
-                  );
-                })}
-              </div>
+            {/* Social Media */}
+            <ScrollAnimation direction="left" delay={0.4}>
+              <Card className="hover-elevate transition-all duration-300">
+                <CardHeader className="pb-4">
+                  <CardTitle>Follow Us</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex space-x-4">
+                    {socialLinks.map((social) => {
+                      const Icon = social.icon;
+                      return (
+                        <a
+                          key={social.label}
+                          href={social.href}
+                          className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                          aria-label={social.label}
+                        >
+                          <Icon className="h-5 w-5" />
+                        </a>
+                      );
+                    })}
+                  </div>
+                </CardContent>
+              </Card>
             </ScrollAnimation>
           </div>
 
-          {/* Right Side - Contact Form */}
-          <ScrollAnimation direction="right" delay={0.1}>
-            <form onSubmit={handleSubmit} className="space-y-6 bg-gray-800 p-0">
-              {/* Name Fields */}
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-white">Name (required)</Label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="firstName" className="text-sm text-gray-400">First Name</Label>
-                    <Input
-                      id="firstName"
-                      value={formData.firstName}
-                      onChange={(e) => handleInputChange('firstName', e.target.value)}
-                      className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="lastName" className="text-sm text-gray-400">Last Name</Label>
-                    <Input
-                      id="lastName"
-                      value={formData.lastName}
-                      onChange={(e) => handleInputChange('lastName', e.target.value)}
-                      className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
+          {/* Contact Form */}
+          <div className="lg:col-span-2">
+            <ScrollAnimation direction="right" delay={0.1}>
+              <Card className="hover-elevate transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-heading">Request a Quote</CardTitle>
+                  <p className="text-muted-foreground">
+                    Fill out the form below and we'll get back to you with a personalized quote within 24 hours.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Name Fields */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="firstName">First Name *</Label>
+                        <Input
+                          id="firstName"
+                          value={formData.firstName}
+                          onChange={(e) => handleInputChange('firstName', e.target.value)}
+                          placeholder="Enter your first name"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="lastName">Last Name *</Label>
+                        <Input
+                          id="lastName"
+                          value={formData.lastName}
+                          onChange={(e) => handleInputChange('lastName', e.target.value)}
+                          placeholder="Enter your last name"
+                          required
+                        />
+                      </div>
+                    </div>
 
-              {/* Contact Phone Number */}
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-white">Contact Phone Number (required)</Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
-                  required
-                />
-              </div>
+                    {/* Contact Information */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Phone Number *</Label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => handleInputChange('phone', e.target.value)}
+                          placeholder="(555) 123-4567"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email Address *</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => handleInputChange('email', e.target.value)}
+                          placeholder="your@email.com"
+                          required
+                        />
+                      </div>
+                    </div>
 
-              {/* Email */}
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-white">Email (required)</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
-                  required
-                />
-              </div>
+                    {/* Confirm Email */}
+                    <div className="space-y-2">
+                      <Label htmlFor="confirmEmail">Confirm Email Address *</Label>
+                      <Input
+                        id="confirmEmail"
+                        type="email"
+                        value={formData.confirmEmail}
+                        onChange={(e) => handleInputChange('confirmEmail', e.target.value)}
+                        placeholder="Confirm your email address"
+                        required
+                      />
+                    </div>
 
-              {/* Confirm Email */}
-              <div className="space-y-2">
-                <Label htmlFor="confirmEmail" className="text-white">Confirm Email (required)</Label>
-                <Input
-                  id="confirmEmail"
-                  type="email"
-                  value={formData.confirmEmail}
-                  onChange={(e) => handleInputChange('confirmEmail', e.target.value)}
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
-                  required
-                />
-              </div>
+                    {/* Project Details */}
+                    <div className="space-y-2">
+                      <Label htmlFor="vehicleMakeModel">Project Type/Space *</Label>
+                      <Input
+                        id="vehicleMakeModel"
+                        value={formData.vehicleMakeModel}
+                        onChange={(e) => handleInputChange('vehicleMakeModel', e.target.value)}
+                        placeholder="e.g., Kitchen cabinets, bathroom vanity, office walls"
+                        required
+                      />
+                    </div>
 
-              {/* Vehicle Make and Model */}
-              <div className="space-y-2">
-                <Label htmlFor="vehicleMakeModel" className="text-white">Vehicle Make and Model (required)</Label>
-                <Input
-                  id="vehicleMakeModel"
-                  value={formData.vehicleMakeModel}
-                  onChange={(e) => handleInputChange('vehicleMakeModel', e.target.value)}
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
-                  required
-                />
-              </div>
+                    {/* Property Information */}
+                    <div className="space-y-2">
+                      <Label htmlFor="registration">Property/Room Size</Label>
+                      <Input
+                        id="registration"
+                        value={formData.registration}
+                        onChange={(e) => handleInputChange('registration', e.target.value)}
+                        placeholder="e.g., 10x12 kitchen, 300 sq ft office (optional)"
+                      />
+                    </div>
 
-              {/* Registration Number */}
-              <div className="space-y-2">
-                <Label htmlFor="registration" className="text-white">Registration Number</Label>
-                <Input
-                  id="registration"
-                  value={formData.registration}
-                  onChange={(e) => handleInputChange('registration', e.target.value)}
-                  placeholder="If unknown please put N/A"
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500"
-                />
-              </div>
+                    {/* Services Dropdown */}
+                    <div className="space-y-2">
+                      <Label htmlFor="services">Service Interested In *</Label>
+                      <Select value={formData.services} onValueChange={(value) => handleInputChange('services', value)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a service" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {serviceOptions.map((service) => (
+                            <SelectItem key={service} value={service}>
+                              {service}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-              {/* Services */}
-              <div className="space-y-2">
-                <Label htmlFor="services" className="text-white">Which service(s) are you interested in? (required)</Label>
-                <Select value={formData.services} onValueChange={(value) => handleInputChange('services', value)}>
-                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
-                    <SelectValue placeholder="Select an option" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-700 border-gray-600">
-                    {serviceOptions.map((service) => (
-                      <SelectItem key={service} value={service} className="text-white hover:bg-gray-600">
-                        {service}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+                    {/* Message */}
+                    <div className="space-y-2">
+                      <Label htmlFor="message">Project Details *</Label>
+                      <Textarea
+                        id="message"
+                        value={formData.message}
+                        onChange={(e) => handleInputChange('message', e.target.value)}
+                        placeholder="Please describe your project, including any specific requirements, timeline, or questions you have..."
+                        className="min-h-[120px]"
+                        required
+                      />
+                      <p className="text-sm text-muted-foreground">
+                        Include as much detail as possible to help us provide an accurate quote. You can also attach photos after submitting this form.
+                      </p>
+                    </div>
 
-              {/* Message */}
-              <div className="space-y-2">
-                <Label htmlFor="message" className="text-white">How can we help? (required)</Label>
-                <p className="text-sm text-gray-400">Don't forget to add photos to assist us with your quotation when prompted after you have submitted your enquiry</p>
-                <Textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => handleInputChange('message', e.target.value)}
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-gray-500 min-h-[120px]"
-                  required
-                />
-              </div>
-
-              {/* Submit Button */}
-              <Button 
-                type="submit" 
-                className="bg-gray-600 hover:bg-gray-500 text-white px-8 py-2"
-              >
-                SUBMIT
-              </Button>
-            </form>
-          </ScrollAnimation>
+                    {/* Submit Button */}
+                    <Button 
+                      type="submit" 
+                      size="lg"
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    >
+                      Submit Quote Request
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </ScrollAnimation>
+          </div>
         </div>
 
         {/* Success Dialog */}
@@ -295,7 +369,7 @@ export default function Contact() {
             <AlertDialogHeader>
               <AlertDialogTitle>Thank You!</AlertDialogTitle>
               <AlertDialogDescription>
-                Your enquiry has been submitted successfully. We'll get back to you within 24 hours.
+                Your quote request has been submitted successfully. Our team will review your project details and get back to you within 24 hours with a personalized quote and next steps.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
