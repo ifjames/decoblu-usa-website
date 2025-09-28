@@ -1,10 +1,13 @@
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { useLocation } from 'wouter';
 import ScrollAnimation from './ScrollAnimation';
 import heroImage from '@assets/stock_images/modern_interior_desi_86661423.jpg';
 
 export default function Hero() {
+  const [, setLocation] = useLocation();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -61,7 +64,7 @@ export default function Hero() {
               size="lg" 
               className="bg-primary text-primary-foreground border-primary-border hover-elevate active-elevate-2"
               data-testid="button-get-quote-hero"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => setLocation('/contact')}
             >
               Get a Quote
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -71,6 +74,7 @@ export default function Hero() {
               size="lg"
               className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover-elevate active-elevate-2"
               data-testid="button-view-catalog"
+              onClick={() => setLocation('/catalog')}
             >
               View Catalog
             </Button>
