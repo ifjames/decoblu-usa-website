@@ -1,42 +1,33 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ThemeToggle from './ThemeToggle';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
   const [isVisible, setIsVisible] = useState(true);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const scrollDelta = Math.abs(currentScrollY - lastScrollY.current);
       
       // Always show navbar when mobile menu is open
       if (isOpen) {
         setIsVisible(true);
-        lastScrollY.current = currentScrollY;
         return;
       }
       
-      // Show navbar at the top
-      if (currentScrollY < 10) {
+      // Only show navbar when at the very top of the page
+      if (currentScrollY < 50) {
         setIsVisible(true);
-      } 
-      // Hide navbar when scrolling down with sufficient delta and distance
-      else if (currentScrollY > lastScrollY.current && currentScrollY > 100 && scrollDelta > 10) {
+      } else {
         setIsVisible(false);
-      } 
-      // Show navbar when scrolling up with sufficient delta
-      else if (currentScrollY < lastScrollY.current && scrollDelta > 10) {
-        setIsVisible(true);
       }
-      
-      lastScrollY.current = currentScrollY;
     };
+
+    // Set initial visibility based on current scroll position
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -53,7 +44,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b shadow-lg transition-transform duration-300 ease-in-out ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-sm border-b shadow-md transition-transform duration-300 ease-in-out ${
       isVisible ? 'translate-y-0' : '-translate-y-full'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,10 +71,9 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
-            <ThemeToggle />
             <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:shadow-lg border border-primary"
+              size="sm" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-2 rounded-md transition-all duration-200 hover:shadow-lg border border-primary"
               data-testid="button-get-quote"
               onClick={() => {
                 if (location === '/') {
