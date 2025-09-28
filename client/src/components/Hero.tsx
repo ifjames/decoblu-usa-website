@@ -2,7 +2,7 @@ import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import ScrollAnimation from './ScrollAnimation';
-import heroImage from '@assets/Infeel_V17_digital_catalog_page-0001.jpg';
+import heroImage from '@assets/stock_images/modern_interior_desi_86661423.jpg';
 
 export default function Hero() {
   return (
@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <motion.img
           src={heroImage}
-          alt="Premium architectural vinyl wrap catalog showcase"
+          alt="Modern interior design with architectural vinyl applications"
           className="w-full h-full object-cover"
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -61,6 +61,7 @@ export default function Hero() {
               size="lg" 
               className="bg-primary text-primary-foreground border-primary-border hover-elevate active-elevate-2"
               data-testid="button-get-quote-hero"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Get a Quote
               <ArrowRight className="ml-2 h-5 w-5" />

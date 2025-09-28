@@ -199,7 +199,14 @@ export default function Catalog() {
                 
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-bold text-primary">{wrap.price}</span>
-                  <Button size="sm" data-testid={`button-quote-${wrap.id}`}>
+                  <Button 
+                    size="sm" 
+                    data-testid={`button-quote-${wrap.id}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      alert(`Request a quote for ${wrap.name}. Please call (555) 123-WRAP or email info@decobluusa.com with product code ${wrap.name.split(' ').pop()}.`);
+                    }}
+                  >
                     Get Quote
                   </Button>
                 </div>
@@ -278,7 +285,14 @@ export default function Catalog() {
                 
                 <div className="flex justify-between items-center pt-4 border-t">
                   <span className="text-3xl font-bold text-primary">{selectedProduct.price}</span>
-                  <Button size="lg" data-testid="button-quote-modal">
+                  <Button 
+                    size="lg" 
+                    data-testid="button-quote-modal"
+                    onClick={() => {
+                      alert(`Request a quote for ${selectedProduct.name}. Please call (555) 123-WRAP or email info@decobluusa.com with product code ${selectedProduct.name.split(' ').pop()}.`);
+                      setSelectedProduct(null);
+                    }}
+                  >
                     Request Quote
                   </Button>
                 </div>

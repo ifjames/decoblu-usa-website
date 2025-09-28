@@ -100,6 +100,7 @@ export default function ServicesGrid() {
                       size="sm"
                       className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                       data-testid={`button-service-${index}`}
+                      onClick={() => window.location.href = '/catalog'}
                     >
                       Learn More
                       <ArrowRight className="ml-2 h-4 w-4" />

@@ -77,10 +77,19 @@ export default function Contact() {
                 Ready to transform your interior space with premium architectural vinyl wraps?
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" data-testid="button-get-quote-contact">
+                <Button 
+                  size="lg" 
+                  data-testid="button-get-quote-contact"
+                  onClick={() => alert('Thank you for your interest! Please call us at (555) 123-WRAP or email info@decobluusa.com for a free quote.')}
+                >
                   Get Free Quote
                 </Button>
-                <Button variant="outline" size="lg" data-testid="button-call-now">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  data-testid="button-call-now"
+                  onClick={() => window.open('tel:+15551239727', '_self')}
+                >
                   Call Now
                 </Button>
               </div>
