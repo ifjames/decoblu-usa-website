@@ -31,14 +31,13 @@ export default function About() {
           <div>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-6">
               Welcome to{' '}
-              <span className="text-primary">Deco</span>
-              <span className="text-foreground"> Blu </span>
-              <span className="text-black">USA</span>
+              <span className="text-primary">DecoBlu</span>
+              <span className="text-black"> USA</span>
             </h2>
             
             <div className="space-y-4 text-lg text-muted-foreground mb-8">
               <p>
-                <strong className="text-foreground">With over 15 years of industry experience, Deco Blu USA has become a leading architectural vinyl enhancement company.</strong> We specialize in premium interior vinyl applications for multi-use facilities such as restaurants, hotels, hospitals, and department stores.
+                <strong className="text-foreground">With over 15 years of industry experience, DecoBlu USA has become a leading architectural vinyl enhancement company.</strong> We specialize in premium interior vinyl applications for multi-use facilities such as restaurants, hotels, hospitals, and department stores.
               </p>
               <p>
                 Our commitment to quality and customer satisfaction ensures that every project is executed to the highest standards. From apartments and office buildings to interior pillars, ceilings, doors, and art walls, we transform spaces with professional vinyl solutions.

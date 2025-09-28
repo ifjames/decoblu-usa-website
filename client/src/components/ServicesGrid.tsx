@@ -62,9 +62,8 @@ export default function ServicesGrid() {
         <ScrollAnimation className="text-center mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
             What We Do at{' '}
-            <span className="text-primary">Deco</span>
-            <span className="text-foreground"> Blu </span>
-            <span className="text-black">USA</span>
+            <span className="text-primary">DecoBlu</span>
+            <span className="text-black"> USA</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Professional architectural vinyl wrapping services for cabinets, walls, ceilings, and interior spaces across the United States.

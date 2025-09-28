@@ -25,9 +25,8 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="font-heading font-bold text-2xl">
-              <span className="text-primary">Deco</span>
-              <span className="text-foreground"> Blu </span>
-              <span className="text-black">USA</span>
+              <span className="text-primary">DecoBlu</span>
+              <span className="text-foreground"> USA</span>
             </div>
           </Link>
 

@@ -40,9 +40,8 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <Link href="/" className="inline-block mb-4">
                 <div className="font-heading font-bold text-3xl">
-                  <span className="text-primary">Deco</span>
-                  <span className="text-background"> Blu </span>
-                  <span className="text-gray-400">USA</span>
+                  <span className="text-primary">DecoBlu</span>
+                  <span className="text-gray-400"> USA</span>
                 </div>
               </Link>
               <p className="text-gray-300 mb-6 max-w-md">
@@ -126,7 +125,7 @@ export default function Footer() {
         <div className="py-6 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Deco Blu USA. All rights reserved.
+              © 2024 DecoBlu USA. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="#" className="text-gray-400 hover:text-primary text-sm transition-colors">
