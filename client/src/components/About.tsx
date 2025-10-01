@@ -37,10 +37,15 @@ export default function About() {
             
             <div className="space-y-4 text-lg text-muted-foreground mb-8">
               <p>
-                <strong className="text-foreground">With over 15 years of industry experience, DecoBlu USA has become a leading architectural vinyl enhancement company.</strong> We specialize in premium interior vinyl applications for multi-use facilities such as restaurants, hotels, hospitals, and department stores.
+                <strong className="text-foreground">DECOBLU INC. IS THE SOLUTION PROVIDER FOR THE ARCHITECTURAL FINISH INDUSTRY.</strong>
               </p>
               <p>
-                Our commitment to quality and customer satisfaction ensures that every project is executed to the highest standards. From apartments and office buildings to interior pillars, ceilings, doors, and art walls, we transform spaces with professional vinyl solutions.
+                OUR PRODUCTS RANGE ACROSS INTERIOR DECORATION FILMS, ARCHITECTURAL AND AUTOMOTIVE WINDOW FILMS,
+                INTERIOR DECORATION WINDOW FILMS, AND LUXURY VINYL FLOORING.
+              </p>
+              <p>
+                DECOBLU INC. IS THE PERFECT AND RELIABLE PARTNER FOR YOUR BUSINESS WITH CREATIVE, INNOVATIVE
+                AND CUSTOMER-ORIENTED PRODUCTS.
               </p>
             </div>
 
