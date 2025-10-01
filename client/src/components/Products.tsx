@@ -202,7 +202,7 @@ export default function Products() {
   };
 
   return (
-    <div className="min-h-screen py-20 bg-gradient-to-b from-background to-muted/20">
+    <div id="products" className="min-h-screen py-20 bg-gradient-to-b from-background to-muted/20">
       {/* Header Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <ScrollAnimation direction="up">
@@ -301,42 +301,6 @@ export default function Products() {
         ))}
       </div>
 
-      {/* Call to Action */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <ScrollAnimation direction="up">
-          <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20 shadow-xl">
-            <CardContent className="p-8 md:p-12 text-center">
-              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Ready to Transform Your Space?
-              </h3>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Contact us today for a free consultation and quote. Our expert team is ready to help you choose the perfect solution for your project.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg"
-                  onClick={() => setLocation('/contact')}
-                  className="bg-primary text-primary-foreground hover-elevate active-elevate-2 px-8 py-6 text-lg"
-                  data-testid="button-contact-cta"
-                >
-                  Get Free Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  onClick={() => handleDownloadCatalog(catalogPdf, 'Infeel_V17')}
-                  className="hover-elevate active-elevate-2 px-8 py-6 text-lg border-2"
-                  data-testid="button-download-cta"
-                >
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Full Catalog
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </ScrollAnimation>
-      </div>
     </div>
   );
 }

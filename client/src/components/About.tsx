@@ -1,7 +1,7 @@
 import { CheckCircle, Award, Users, Zap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import ScrollAnimation from './ScrollAnimation';
-import workshopImage from '@assets/Infeel_V17_digital_catalog_page-0002.jpg';
+import decobluLogo from '@assets/decoblu text logo.png';
 
 const features = [
   {
@@ -86,13 +86,12 @@ export default function About() {
 
           {/* Image */}
           <ScrollAnimation direction="right">
-          <div className="relative">
+          <div className="relative flex items-center justify-center bg-white dark:bg-background rounded-lg shadow-lg p-12 h-[500px]">
             <img
-              src={workshopImage}
-              alt="Professional architectural vinyl installation workspace"
-              className="w-full h-[500px] object-cover rounded-lg shadow-lg"
+              src={decobluLogo}
+              alt="DecoBlu USA Logo"
+              className="w-auto max-h-full object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-lg"></div>
           </div>
           </ScrollAnimation>
         </div>

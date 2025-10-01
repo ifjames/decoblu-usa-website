@@ -40,7 +40,7 @@ export default function Navigation() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/products", label: "Products" },
+    { href: isHomePage ? "#products" : "/#products", label: "Line of Products" },
     { href: isHomePage ? "#about" : "/#about", label: "About" },
   ];
 

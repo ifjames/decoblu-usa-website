@@ -97,7 +97,7 @@ export default function Contact() {
             <span className="text-foreground"> USA</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to transform your interior space? Contact our expert team for a personalized consultation and free quote.
+            Contact our expert team for a personalized consultation and free quote.
           </p>
         </ScrollAnimation>
 
