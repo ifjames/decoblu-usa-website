@@ -10,10 +10,14 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const distanceFromBottom = documentHeight - (currentScrollY + windowHeight);
 
       // Always show navbar when mobile menu is open
       if (isOpen) {
@@ -21,12 +25,24 @@ export default function Navigation() {
         return;
       }
 
-      // Only show navbar when at the very top of the page
+      // Show navbar when at the very top of the page
       if (currentScrollY < 50) {
         setIsVisible(true);
-      } else {
+      }
+      // Show navbar when scrolling up
+      else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+      // Show navbar when near the bottom (within 300px from bottom)
+      else if (distanceFromBottom < 300) {
+        setIsVisible(true);
+      }
+      // Hide navbar when scrolling down and not near bottom
+      else {
         setIsVisible(false);
       }
+
+      setLastScrollY(currentScrollY);
     };
 
     // Set initial visibility based on current scroll position
@@ -34,7 +50,7 @@ export default function Navigation() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isOpen]);
+  }, [isOpen, lastScrollY]);
 
   const isHomePage = location === "/";
 

@@ -62,6 +62,19 @@ DecoBlu USA is a professional architectural vinyl wrap company specializing in p
 - Navigation now properly closes mobile menu after selecting a section link
 - All scrollbars hidden across the website while maintaining scroll functionality
 
+**UI Component Updates (October 1, 2025):**
+- Removed white container background from About Us section logo/image - now displays as clean image
+- Removed Card component containers from Testimonials section for cleaner, minimal styling
+- Reduced footer padding from py-16 to py-10 (main section) and py-6 to py-4 (bottom section) for more compact footer
+
+**Smart Navbar Behavior (October 1, 2025):**
+- Implemented intelligent navbar scroll behavior for both mobile and desktop
+- Navbar now shows when scrolling up at any point on the page
+- Navbar automatically appears when near the bottom of the page (within 300px from bottom/last section)
+- Navbar hides when scrolling down and not near bottom for cleaner viewing experience
+- Smooth slide-in/slide-out animations using CSS transforms for professional UX
+- Always visible at the top of the page and when mobile menu is open
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
