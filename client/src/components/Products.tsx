@@ -9,11 +9,28 @@ import decobluWindowLogo from '@assets/image_1759301424430.png';
 import povWindowLogo from '@assets/image_1759301437669.png';
 import catalogPdf from '@assets/Infeel_V17_digital_catalog_1759042493296.pdf';
 
+import product1_1 from '@assets/product1/1.jpg';
+import product1_2 from '@assets/product1/2.jpg';
+
+import product2_a from '@assets/product2/a.jpg';
+import product2_b from '@assets/product2/b.jpg';
+import product2_c from '@assets/product2/c.jpg';
+
+import product3_aa from '@assets/product3/aa.jpg';
+import product3_bb from '@assets/product3/bb.jpg';
+import product3_cc from '@assets/product3/cc.jpg';
+import product3_dd from '@assets/product3/dd.jpg';
+
+import product4_aaa from '@assets/product4/aaa.jpg';
+import product4_bbb from '@assets/product4/bbb.jpg';
+import product4_ccc from '@assets/product4/ccc.jpg';
+
 const products = [
   {
     id: 1,
     name: 'INFeel Architectural Finish Films',
     logo: infeelLogo,
+    images: [product1_1, product1_2],
     description: 'INFEEL is a self-adhesive, thermo-formable and multi-purpose surface finish vinyl film which can be easily installed on walls, columns, ceilings, doors, moldings and any interior fixtures. INFEEL can be widely applied for commercial uses such as restaurants, hotels, hospitals, department stores, retails stores, auditoriums, airports, government offices and a lot more. INFEEL can also be widely applied for residential uses, such as living rooms, bathrooms, kitchen areas, bedrooms, and more.',
     features: [
       'Fire retardant and flame resistance treatments',
@@ -31,6 +48,7 @@ const products = [
     id: 2,
     name: 'DecoBlu Luxury Vinyl Flooring',
     logo: decobluFlooringLogo,
+    images: [product2_a, product2_b, product2_c],
     description: 'DECOBLU vinyl flooring is innovative, high-performing and durable product that is produced and sold in plank and tile format. DECOBLU vinyl flooring is available in glue down type, click type and loose lay type. DECOBLU vinyl flooring has 120 designs, colors and patterns which can meet various needs and demand.',
     features: [
       'Available in plank and tile format',
@@ -48,6 +66,7 @@ const products = [
     id: 3,
     name: 'DecoBlu Window Films',
     logo: decobluWindowLogo,
+    images: [product3_aa, product3_bb, product3_cc, product3_dd],
     description: 'DECOBLU INC. provides competitive solar optical window films with advanced technology. DECOBLU INC. offers high-quality automotive window films, architectural window films for both commercial and residential uses, safety films, security films and anti-graffiti films.',
     features: [
       'Automotive Films - Reduce heat and control UV rays by 99%',
@@ -65,6 +84,7 @@ const products = [
     id: 4,
     name: 'POV Window Films',
     logo: povWindowLogo,
+    images: [product4_aaa, product4_bbb, product4_ccc],
     description: 'POV window films are designed and created exclusively to be applied on glass surfaces. These shatter-proof decorative films can be used to control light and reject 98% of the UV rays. Specially printed POV films protect privacy of the residential houses and also the commercial areas such as offices, stores and common areas.',
     features: [
       'Shatter-proof decorative films',
@@ -113,61 +133,73 @@ export default function Products() {
             <div className={`bg-gradient-to-r ${product.bgColor} py-16 md:py-24`}>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Card className="border-0 shadow-2xl overflow-hidden bg-white/80 dark:bg-background/80 backdrop-blur-sm">
-                  <CardContent className="p-0">
-                    <div className="grid md:grid-cols-2 gap-0 items-center">
-                      {/* Logo Section */}
-                      <div className={`p-8 md:p-12 lg:p-16 flex items-center justify-center bg-gradient-to-br from-background/50 to-background/80 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                        <div className="text-center w-full">
-                          <img 
-                            src={product.logo} 
-                            alt={`${product.name} logo`}
-                            className="h-24 md:h-32 lg:h-40 w-auto mx-auto mb-6"
-                            data-testid={`img-logo-${product.id}`}
-                          />
-                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4" data-testid={`text-product-name-${product.id}`}>
-                            {product.name}
-                          </h2>
-                        </div>
-                      </div>
-
-                      {/* Content Section */}
-                      <div className={`p-8 md:p-12 lg:p-16 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                        <p className="text-base md:text-lg text-muted-foreground mb-6 leading-relaxed" data-testid={`text-description-${product.id}`}>
-                          {product.description}
-                        </p>
-
-                        {/* Features */}
-                        <div className="mb-6">
-                          <h3 className="text-lg font-semibold text-foreground mb-3">Key Features:</h3>
-                          <ul className="space-y-2">
-                            {product.features.map((feature, idx) => (
-                              <li key={idx} className="flex items-start text-muted-foreground">
-                                <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Benefits */}
-                        <div className="p-4 bg-primary/5 rounded-lg border border-primary/10 mb-6">
-                          <p className="text-sm md:text-base text-foreground/80" data-testid={`text-benefits-${product.id}`}>
-                            {product.benefits}
-                          </p>
-                        </div>
-
-                        {/* Download Button */}
-                        <Button 
-                          size="lg"
-                          onClick={() => handleDownloadCatalog(product.catalogUrl || catalogPdf, product.name)}
-                          className="bg-primary text-primary-foreground hover-elevate active-elevate-2 w-full md:w-auto"
-                          data-testid={`button-download-catalog-${product.id}`}
-                        >
-                          <Download className="mr-2 h-5 w-5" />
-                          Download Catalog
-                        </Button>
-                      </div>
+                  <CardContent className="p-8 md:p-12 lg:p-16">
+                    {/* Logo Section at Top */}
+                    <div className="text-center mb-8">
+                      <img 
+                        src={product.logo} 
+                        alt={`${product.name} logo`}
+                        className="h-24 md:h-32 lg:h-40 w-auto mx-auto mb-4"
+                        data-testid={`img-logo-${product.id}`}
+                      />
+                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground" data-testid={`text-product-name-${product.id}`}>
+                        {product.name}
+                      </h2>
                     </div>
+
+                    {/* Product Images Grid */}
+                    <div className={`grid gap-4 mb-8 ${
+                      product.images.length === 2 ? 'grid-cols-1 md:grid-cols-2' :
+                      product.images.length === 3 ? 'grid-cols-1 md:grid-cols-3' :
+                      'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+                    }`}>
+                      {product.images.map((image, idx) => (
+                        <div key={idx} className="relative overflow-hidden rounded-lg shadow-md aspect-video">
+                          <img
+                            src={image}
+                            alt={`${product.name} - Image ${idx + 1}`}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            data-testid={`img-product-${product.id}-${idx}`}
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-base md:text-lg text-muted-foreground mb-6 leading-relaxed" data-testid={`text-description-${product.id}`}>
+                      {product.description}
+                    </p>
+
+                    {/* Features */}
+                    <div className="mb-6">
+                      <h3 className="text-lg font-semibold text-foreground mb-3">Key Features:</h3>
+                      <ul className="space-y-2">
+                        {product.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start text-muted-foreground">
+                            <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Benefits */}
+                    <div className="p-4 bg-primary/5 rounded-lg border border-primary/10 mb-6">
+                      <p className="text-sm md:text-base text-foreground/80" data-testid={`text-benefits-${product.id}`}>
+                        {product.benefits}
+                      </p>
+                    </div>
+
+                    {/* Download Button */}
+                    <Button 
+                      size="lg"
+                      onClick={() => handleDownloadCatalog(product.catalogUrl || catalogPdf, product.name)}
+                      className="bg-primary text-primary-foreground hover-elevate active-elevate-2 w-full md:w-auto"
+                      data-testid={`button-download-catalog-${product.id}`}
+                    >
+                      <Download className="mr-2 h-5 w-5" />
+                      Download Catalog
+                    </Button>
                   </CardContent>
                 </Card>
               </div>
