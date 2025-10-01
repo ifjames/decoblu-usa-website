@@ -99,18 +99,9 @@ export default function Products() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-products-title">
               Our Product Lines
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8" data-testid="text-products-subtitle">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-products-subtitle">
               Explore our comprehensive collection of premium architectural films, flooring, and window solutions for interior and exterior applications.
             </p>
-            <Button 
-              size="lg"
-              onClick={() => handleDownloadCatalog(catalogPdf, 'Infeel_V17')}
-              className="bg-primary text-primary-foreground hover-elevate active-elevate-2"
-              data-testid="button-download-catalog"
-            >
-              <Download className="mr-2 h-5 w-5" />
-              Download Catalog
-            </Button>
           </div>
         </ScrollAnimation>
       </div>
@@ -165,18 +156,16 @@ export default function Products() {
                           </p>
                         </div>
 
-                        {/* Download Button - only show if catalog exists */}
-                        {product.catalogUrl && (
-                          <Button 
-                            size="lg"
-                            onClick={() => handleDownloadCatalog(product.catalogUrl!, product.name)}
-                            className="bg-primary text-primary-foreground hover-elevate active-elevate-2 w-full md:w-auto"
-                            data-testid={`button-download-catalog-${product.id}`}
-                          >
-                            <Download className="mr-2 h-5 w-5" />
-                            Download Catalog
-                          </Button>
-                        )}
+                        {/* Download Button */}
+                        <Button 
+                          size="lg"
+                          onClick={() => handleDownloadCatalog(product.catalogUrl || catalogPdf, product.name)}
+                          className="bg-primary text-primary-foreground hover-elevate active-elevate-2 w-full md:w-auto"
+                          data-testid={`button-download-catalog-${product.id}`}
+                        >
+                          <Download className="mr-2 h-5 w-5" />
+                          Download Catalog
+                        </Button>
                       </div>
                     </div>
                   </CardContent>
