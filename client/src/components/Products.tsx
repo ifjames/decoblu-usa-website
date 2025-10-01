@@ -9,7 +9,6 @@ import infeelLogo from '@assets/image_1759301171336.png';
 import decobluFlooringLogo from '@assets/image_1759301420207.png';
 import decobluWindowLogo from '@assets/image_1759301424430.png';
 import povWindowLogo from '@assets/image_1759301437669.png';
-import catalogPdf from '@assets/Infeel_V17_digital_catalog_1759042493296.pdf';
 
 import product1_1 from '@assets/product1/1.jpg';
 import product1_2 from '@assets/product1/2.jpg';
@@ -50,7 +49,7 @@ const products = [
       'Certified worldwide'
     ],
     benefits: 'It lowers the project costs and maintenance costs. INFEEL has fire retardant and flame resistance treatments and it is certified worldwide. INFEEL has abrasion resistance, dimensional stability, heat resistance, damp resistance, cold temperature resistance and stain resistance.',
-    catalogUrl: catalogPdf
+    catalogUrl: 'https://drive.google.com/file/d/1Ezh54JsP5E6aq_-6YSAn-7EzvABoOc_t/view?usp=drive_link'
   },
   {
     id: 2,
@@ -67,7 +66,7 @@ const products = [
       'Cost-effective flooring solution'
     ],
     benefits: 'DECOBLU vinyl flooring brings out the richness and texture of expensive natural materials, such as real woods, abstracts, carpets, stones, granites, fabrics and marbles with the most advanced printing technology.',
-    catalogUrl: undefined
+    catalogUrl: 'https://drive.google.com/file/d/1uqy_QT-X5NssryvoGLCeGdDBbol-5IM-/view?usp=drive_link'
   },
   {
     id: 3,
@@ -84,7 +83,7 @@ const products = [
       'No delaminating, rainbow, or orange peel'
     ],
     benefits: 'DECOBLU films reduce heat, protect from harmful UV rays, enhance privacy, improve safety, and provide cost-effective solutions for both automotive and architectural applications.',
-    catalogUrl: undefined
+    catalogUrl: 'https://drive.google.com/file/d/1u6QIosn4PlgVrjhux6Qjbrg1kHIdtrAE/view?usp=drive_link'
   },
   {
     id: 4,
@@ -101,7 +100,7 @@ const products = [
       'Exclusively for glass surfaces'
     ],
     benefits: 'POV is made of the same special adhesive and film that are used for safety films and therefore it functions similarly to the safety film in the event of glass breakage.',
-    catalogUrl: undefined
+    catalogUrl: 'https://drive.google.com/file/d/14oFqyPruStRyxiAps4HKJsG3M6yinNWc/view?usp=drive_link'
   },
   {
     id: 5,
@@ -118,7 +117,7 @@ const products = [
       'Multiple backing types for different applications'
     ],
     benefits: 'Woven by Elite offers superior durability with multiple backing options: Comfort rear for tiles, PVC backing for rolls, Foamed PVC backing for carpets, No backing for walls, and Thin PVC backing for walls. This versatility makes it suitable for a wide range of applications.',
-    catalogUrl: undefined
+    catalogUrl: 'https://drive.google.com/file/d/1dF5SAzxwZF2IDzz3oLF8nYIK8k7yG0Ak/view?usp=drive_link'
   }
 ];
 
@@ -218,11 +217,8 @@ function ProductCarousel({ images, productId }: { images: string[], productId: n
 export default function Products() {
   const [, setLocation] = useLocation();
   
-  const handleDownloadCatalog = (catalogUrl: string, productName: string) => {
-    const link = document.createElement('a');
-    link.href = catalogUrl;
-    link.download = `${productName.replace(/\s+/g, '_')}_Catalog.pdf`;
-    link.click();
+  const handleDownloadCatalog = (catalogUrl: string) => {
+    window.open(catalogUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -314,7 +310,7 @@ export default function Products() {
                     <div className="text-center">
                       <Button 
                         size="default"
-                        onClick={() => handleDownloadCatalog(product.catalogUrl || catalogPdf, product.name)}
+                        onClick={() => handleDownloadCatalog(product.catalogUrl)}
                         className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300 px-6 py-2"
                         data-testid={`button-download-catalog-${product.id}`}
                       >
