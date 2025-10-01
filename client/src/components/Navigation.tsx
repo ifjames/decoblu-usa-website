@@ -48,18 +48,22 @@ export default function Navigation() {
     // If it's a hash link on the current page
     if (href.startsWith("#") && isHomePage) {
       e.preventDefault();
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
       setIsOpen(false);
+      // Wait for mobile menu to close before scrolling
+      setTimeout(() => {
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }, 350); // Wait for menu animation to complete
     }
     // If it's a path with hash like "/#products" from another page
     else if (href.startsWith("/#")) {
       e.preventDefault();
+      setIsOpen(false);
       setLocation("/");
       setTimeout(() => {
         const hash = href.substring(1); // Remove the leading "/"
@@ -70,8 +74,7 @@ export default function Navigation() {
             block: 'start',
           });
         }
-      }, 100);
-      setIsOpen(false);
+      }, 400); // Increased timeout for navigation + menu close
     }
     // Regular navigation
     else {
