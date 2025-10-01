@@ -86,9 +86,13 @@ export default function Hero() {
             }}
             data-testid="text-hero-subheading"
           >
-            Professional architectural vinyl solutions for cabinets, walls,
-            ceilings, and interior spaces. Transform any surface with premium
-            quality wraps.
+            DECOBLU INC. IS THE SOLUTION PROVIDER FOR THE ARCHITECTURAL FINISH INDUSTRY.
+            <br /><br />
+            OUR PRODUCTS RANGE ACROSS INTERIOR DECORATION FILMS, ARCHITECTURAL AND AUTOMOTIVE WINDOW FILMS,
+            INTERIOR DECORATION WINDOW FILMS, AND LUXURY VINYL FLOORING.
+            <br /><br />
+            DECOBLU INC. IS THE PERFECT AND RELIABLE PARTNER FOR YOUR BUSINESS WITH CREATIVE, INNOVATIVE
+            AND CUSTOMER-ORIENTED PRODUCTS.
           </motion.p>
 
           {/* CTA Buttons */}
