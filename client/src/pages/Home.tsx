@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Products from '@/components/Products';
+import LineOfProductsSlideshow from '@/components/LineOfProductsSlideshow';
 import About from '@/components/About';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
@@ -12,6 +13,7 @@ export default function Home() {
       <SmoothScroll />
       <Navigation />
       <Hero />
+      <LineOfProductsSlideshow />
       <Products />
       <About />
       <Testimonials />
