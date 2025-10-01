@@ -1,365 +1,227 @@
-import { useState } from 'react';
-import { Search, Filter, Star, Phone, Mail } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Download, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { 
-  AlertDialog, 
-  AlertDialogAction, 
-  AlertDialogContent, 
-  AlertDialogDescription, 
-  AlertDialogFooter, 
-  AlertDialogHeader, 
-  AlertDialogTitle 
-} from '@/components/ui/alert-dialog';
+import { Card, CardContent } from '@/components/ui/card';
+import { useLocation } from 'wouter';
 import ScrollAnimation from './ScrollAnimation';
-import catalogPage1 from '@assets/Infeel_V17_digital_catalog_page-0004.jpg';
-import catalogPage2 from '@assets/Infeel_V17_digital_catalog_page-0005.jpg';
-import catalogPage3 from '@assets/Infeel_V17_digital_catalog_page-0006.jpg';
-import catalogPage4 from '@assets/Infeel_V17_digital_catalog_page-0007.jpg';
-import catalogPage5 from '@assets/Infeel_V17_digital_catalog_page-0008.jpg';
-import catalogPage6 from '@assets/Infeel_V17_digital_catalog_page-0009.jpg';
+import infeelLogo from '@assets/image_1759301171336.png';
+import decobluFlooringLogo from '@assets/image_1759301420207.png';
+import decobluWindowLogo from '@assets/image_1759301424430.png';
+import povWindowLogo from '@assets/image_1759301437669.png';
+import catalogPdf from '@assets/Infeel_V17_digital_catalog_1759042493296.pdf';
 
-const vinylWraps = [
+const products = [
   {
     id: 1,
-    name: 'Premium Solid PS 103',
-    category: 'Premium Solid',
-    material: 'Infeel V17 Series',
-    finish: 'Solid Premium',
-    durability: '15+ years',
-    price: '$45/sqft',
-    rating: 4.9,
-    image: catalogPage1,
-    description: 'Premium solid finish for high-end architectural applications. Perfect for cabinets and walls.',
-    variants: ['Gloss', 'Matte'],
-    features: ['Fire Resistant', 'Easy Clean', 'Scratch Resistant'],
+    name: 'INFeel Architectural Finish Films',
+    logo: infeelLogo,
+    description: 'INFEEL is a self-adhesive, thermo-formable and multi-purpose surface finish vinyl film which can be easily installed on walls, columns, ceilings, doors, moldings and any interior fixtures. INFEEL can be widely applied for commercial uses such as restaurants, hotels, hospitals, department stores, retails stores, auditoriums, airports, government offices and a lot more. INFEEL can also be widely applied for residential uses, such as living rooms, bathrooms, kitchen areas, bedrooms, and more.',
+    features: [
+      'Fire retardant and flame resistance treatments',
+      'Abrasion resistance and dimensional stability',
+      'Heat, damp, and cold temperature resistance',
+      'Stain resistant with easy maintenance',
+      '345 patterns with various colors and designs',
+      'Certified worldwide'
+    ],
+    benefits: 'It lowers the project costs and maintenance costs. INFEEL has fire retardant and flame resistance treatments and it is certified worldwide. INFEEL has abrasion resistance, dimensional stability, heat resistance, damp resistance, cold temperature resistance and stain resistance.',
+    bgColor: 'from-orange-50 to-white dark:from-orange-950/20 dark:to-background',
+    catalogUrl: catalogPdf
   },
   {
     id: 2,
-    name: 'Solid Matt SM 816',
-    category: 'Solid Matt',
-    material: 'Infeel V17 Series',
-    finish: 'Matt',
-    durability: '12+ years',
-    price: '$38/sqft',
-    rating: 4.8,
-    image: catalogPage2,
-    description: 'Sophisticated matte finish ideal for modern interior designs and cabinet applications.',
-    variants: ['Deep Matt', 'Light Matt'],
-    features: ['Anti-Fingerprint', 'Easy Install', 'Durable'],
+    name: 'DecoBlu Luxury Vinyl Flooring',
+    logo: decobluFlooringLogo,
+    description: 'DECOBLU vinyl flooring is innovative, high-performing and durable product that is produced and sold in plank and tile format. DECOBLU vinyl flooring is available in glue down type, click type and loose lay type. DECOBLU vinyl flooring has 120 designs, colors and patterns which can meet various needs and demand.',
+    features: [
+      'Available in plank and tile format',
+      'Glue down, click, and loose lay types',
+      '120 designs, colors and patterns',
+      'Mimics real woods, stones, granites, fabrics, and marbles',
+      'High-performing and durable',
+      'Cost-effective flooring solution'
+    ],
+    benefits: 'DECOBLU vinyl flooring brings out the richness and texture of expensive natural materials, such as real woods, abstracts, carpets, stones, granites, fabrics and marbles with the most advanced printing technology.',
+    bgColor: 'from-cyan-50 to-white dark:from-cyan-950/20 dark:to-background',
+    catalogUrl: undefined
   },
   {
     id: 3,
-    name: 'Wood Grain WD 234',
-    category: 'Wood',
-    material: 'Infeel V17 Wood Series',
-    finish: 'Wood Texture',
-    durability: '10+ years',
-    price: '$52/sqft',
-    rating: 4.9,
-    image: catalogPage3,
-    description: 'Authentic wood grain texture for natural-looking cabinet and wall applications.',
-    variants: ['Light Oak', 'Dark Walnut'],
-    features: ['Textured Surface', 'Natural Look', 'Moisture Resistant'],
+    name: 'DecoBlu Window Films',
+    logo: decobluWindowLogo,
+    description: 'DECOBLU INC. provides competitive solar optical window films with advanced technology. DECOBLU INC. offers high-quality automotive window films, architectural window films for both commercial and residential uses, safety films, security films and anti-graffiti films.',
+    features: [
+      'Automotive Films - Reduce heat and control UV rays by 99%',
+      'Architectural Films - Energy efficient with IR rejection',
+      'Safety & Security Films - Glass fragment protection',
+      'Anti-Graffiti Films - Easy removal and replacement',
+      'Super optical clarity with no yellowing',
+      'No delaminating, rainbow, or orange peel'
+    ],
+    benefits: 'DECOBLU films reduce heat, protect from harmful UV rays, enhance privacy, improve safety, and provide cost-effective solutions for both automotive and architectural applications.',
+    bgColor: 'from-blue-50 to-white dark:from-blue-950/20 dark:to-background',
+    catalogUrl: undefined
   },
   {
     id: 4,
-    name: 'Metal Finish MT 209',
-    category: 'Metal',
-    material: 'Infeel V17 Metal Series',
-    finish: 'Brushed Metal',
-    durability: '12+ years',
-    price: '$48/sqft',
-    rating: 4.7,
-    image: catalogPage4,
-    description: 'Premium brushed metal finish for contemporary architectural applications.',
-    variants: ['Brushed Steel', 'Brushed Aluminum'],
-    features: ['Metallic Sheen', 'Architectural Grade', 'Corrosion Resistant'],
-  },
-  {
-    id: 5,
-    name: 'Stone Texture ST 110',
-    category: 'Stone',
-    material: 'Infeel V17 Stone Series',
-    finish: 'Natural Stone',
-    durability: '15+ years',
-    price: '$55/sqft',
-    rating: 5.0,
-    image: catalogPage5,
-    description: 'Natural stone texture perfect for feature walls and architectural elements.',
-    variants: ['Marble', 'Granite'],
-    features: ['Natural Texture', 'Premium Quality', 'Heat Resistant'],
-  },
-  {
-    id: 6,
-    name: 'Fabric Pattern FB 851',
-    category: 'Fabric',
-    material: 'Infeel V17 Fabric Series',
-    finish: 'Textile',
-    durability: '8+ years',
-    price: '$42/sqft',
-    rating: 4.6,
-    image: catalogPage6,
-    description: 'Sophisticated fabric texture for luxury interior design applications.',
-    variants: ['Linen', 'Canvas'],
-    features: ['Soft Touch', 'Elegant Look', 'Easy Maintenance'],
-  },
+    name: 'POV Window Films',
+    logo: povWindowLogo,
+    description: 'POV window films are designed and created exclusively to be applied on glass surfaces. These shatter-proof decorative films can be used to control light and reject 98% of the UV rays. Specially printed POV films protect privacy of the residential houses and also the commercial areas such as offices, stores and common areas.',
+    features: [
+      'Shatter-proof decorative films',
+      'Controls light and rejects 98% UV rays',
+      'Privacy protection for residential and commercial',
+      'Functions as safety film',
+      'Special adhesive technology',
+      'Exclusively for glass surfaces'
+    ],
+    benefits: 'POV is made of the same special adhesive and film that are used for safety films and therefore it functions similarly to the safety film in the event of glass breakage.',
+    bgColor: 'from-red-50 to-white dark:from-red-950/20 dark:to-background',
+    catalogUrl: undefined
+  }
 ];
 
-const categories = ['All', 'Premium Solid', 'Solid Matt', 'Wood', 'Metal', 'Stone', 'Fabric'];
-
 export default function Products() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedProduct, setSelectedProduct] = useState<typeof vinylWraps[0] | null>(null);
-  const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
-  const [quoteProduct, setQuoteProduct] = useState<typeof vinylWraps[0] | null>(null);
-
-  const filteredWraps = vinylWraps.filter(wrap => {
-    const matchesSearch = wrap.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         wrap.material.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || wrap.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const [, setLocation] = useLocation();
+  
+  const handleDownloadCatalog = (catalogUrl: string, productName: string) => {
+    const link = document.createElement('a');
+    link.href = catalogUrl;
+    link.download = `${productName.replace(/\s+/g, '_')}_Catalog.pdf`;
+    link.click();
+  };
 
   return (
-    <div className="min-h-screen bg-background pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <ScrollAnimation className="text-center mb-12">
-          <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-            Infeel V17 Products
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore our comprehensive collection of premium architectural vinyl wraps from the Infeel V17 series for interior applications.
-          </p>
-        </ScrollAnimation>
-
-        {/* Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search vinyl wraps..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-              data-testid="input-search-products"
-            />
-          </div>
-          <div className="flex gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSelectedCategory(category)}
-                data-testid={`button-filter-${category.toLowerCase()}`}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {filteredWraps.map((wrap, index) => (
-            <ScrollAnimation key={wrap.id} delay={index * 0.1} direction="up">
-            <Card 
-              className="group hover-elevate transition-all duration-300 cursor-pointer h-full"
-              onClick={() => setSelectedProduct(wrap)}
-              data-testid={`card-product-${wrap.id}`}
+    <div className="min-h-screen py-20">
+      {/* Header Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <ScrollAnimation direction="up">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-products-title">
+              Our Product Lines
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8" data-testid="text-products-subtitle">
+              Explore our comprehensive collection of premium architectural films, flooring, and window solutions for interior and exterior applications.
+            </p>
+            <Button 
+              size="lg"
+              onClick={() => handleDownloadCatalog(catalogPdf, 'Infeel_V17')}
+              className="bg-primary text-primary-foreground hover-elevate active-elevate-2"
+              data-testid="button-download-catalog"
             >
-              <CardHeader className="p-0">
-                <div className="relative">
-                  <img
-                    src={wrap.image}
-                    alt={wrap.name}
-                    className="w-full h-48 object-cover rounded-t-lg"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <Badge variant="secondary">{wrap.category}</Badge>
-                  </div>
-                  <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1">
-                    <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
-                    <span className="text-xs font-medium">{wrap.rating}</span>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-6">
-                <CardTitle className="font-heading text-xl mb-2">{wrap.name}</CardTitle>
-                <p className="text-muted-foreground text-sm mb-4">{wrap.description}</p>
-                
-                <div className="space-y-2 mb-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Material:</span>
-                    <span className="font-medium">{wrap.material}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Finish:</span>
-                    <span className="font-medium">{wrap.finish}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Durability:</span>
-                    <span className="font-medium">{wrap.durability}</span>
-                  </div>
-                </div>
-                
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-primary">{wrap.price}</span>
-                  <Button 
-                    size="sm" 
-                    data-testid={`button-quote-${wrap.id}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setQuoteProduct(wrap);
-                      setQuoteDialogOpen(true);
-                    }}
-                  >
-                    Get Quote
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-            </ScrollAnimation>
-          ))}
-        </div>
+              <Download className="mr-2 h-5 w-5" />
+              Download Catalog
+            </Button>
+          </div>
+        </ScrollAnimation>
+      </div>
 
-        {/* Product Detail Modal (Simple version for demo) */}
-        {selectedProduct && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setSelectedProduct(null)}>
-            <Card className="max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle className="font-heading text-2xl">{selectedProduct.name}</CardTitle>
-                    <Badge variant="secondary" className="mt-2">{selectedProduct.category}</Badge>
-                  </div>
-                  <Button variant="ghost" size="sm" onClick={() => setSelectedProduct(null)} data-testid="button-close-modal">
-                    ×
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <img
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  className="w-full h-64 object-cover rounded-lg mb-6"
-                />
-                
-                <p className="text-muted-foreground mb-6">{selectedProduct.description}</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h3 className="font-semibold mb-3">Specifications</h3>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span>Material:</span>
-                        <span className="font-medium">{selectedProduct.material}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Finish:</span>
-                        <span className="font-medium">{selectedProduct.finish}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Durability:</span>
-                        <span className="font-medium">{selectedProduct.durability}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Rating:</span>
-                        <div className="flex items-center space-x-1">
-                          <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                          <span className="font-medium">{selectedProduct.rating}</span>
+      {/* Product Lines */}
+      <div className="space-y-0">
+        {products.map((product, index) => (
+          <ScrollAnimation key={product.id} direction={index % 2 === 0 ? 'left' : 'right'}>
+            <div className={`bg-gradient-to-r ${product.bgColor} py-16 md:py-24`}>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Card className="border-0 shadow-2xl overflow-hidden bg-white/80 dark:bg-background/80 backdrop-blur-sm">
+                  <CardContent className="p-0">
+                    <div className="grid md:grid-cols-2 gap-0 items-center">
+                      {/* Logo Section */}
+                      <div className={`p-8 md:p-12 lg:p-16 flex items-center justify-center bg-gradient-to-br from-background/50 to-background/80 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                        <div className="text-center w-full">
+                          <img 
+                            src={product.logo} 
+                            alt={`${product.name} logo`}
+                            className="h-24 md:h-32 lg:h-40 w-auto mx-auto mb-6"
+                            data-testid={`img-logo-${product.id}`}
+                          />
+                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4" data-testid={`text-product-name-${product.id}`}>
+                            {product.name}
+                          </h2>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-semibold mb-3">Available Variants</h3>
-                    <div className="space-y-2 mb-4">
-                      {selectedProduct.variants.map((variant, index) => (
-                        <Badge key={index} variant="outline">{variant}</Badge>
-                      ))}
-                    </div>
-                    
-                    <h3 className="font-semibold mb-3">Features</h3>
-                    <div className="space-y-1">
-                      {selectedProduct.features.map((feature, index) => (
-                        <div key={index} className="text-sm text-muted-foreground">• {feature}</div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="flex justify-between items-center pt-4 border-t">
-                  <span className="text-3xl font-bold text-primary">{selectedProduct.price}</span>
-                  <Button 
-                    size="lg" 
-                    data-testid="button-quote-modal"
-                    onClick={() => {
-                      setQuoteProduct(selectedProduct);
-                      setQuoteDialogOpen(true);
-                      setSelectedProduct(null);
-                    }}
-                  >
-                    Request Quote
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
 
-        {/* Quote Request Dialog */}
-        <AlertDialog open={quoteDialogOpen} onOpenChange={(open) => {
-          setQuoteDialogOpen(open);
-          if (!open) setQuoteProduct(null);
-        }}>
-          <AlertDialogContent className="max-w-md">
-            <AlertDialogHeader>
-              <AlertDialogTitle className="font-heading text-xl">
-                Request Quote for {quoteProduct?.name}
-              </AlertDialogTitle>
-              <AlertDialogDescription>
-                Thank you for your interest in our premium architectural vinyl wrap!
-              </AlertDialogDescription>
-              <div className="bg-muted/50 p-4 rounded-lg space-y-3">
-                <button 
-                  className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
-                  onClick={() => window.open('tel:+15551239727', '_self')}
-                  data-testid="button-call-quote"
-                >
-                  <Phone className="h-4 w-4 text-primary" />
-                  <span className="text-sm">Call us at <strong>(555) 123-WRAP</strong></span>
-                </button>
-                <button 
-                  className="flex items-center space-x-2 hover:text-primary transition-colors cursor-pointer"
-                  onClick={() => window.open('mailto:info@decobluusa.com', '_self')}
-                  data-testid="button-email-quote"
-                >
-                  <Mail className="h-4 w-4 text-primary" />
-                  <span className="text-sm">Email <strong>info@decobluusa.com</strong></span>
-                </button>
-                {quoteProduct && (
-                  <div className="pt-2 border-t border-muted">
-                    <span className="text-sm text-muted-foreground">
-                      Product Code: <strong>{quoteProduct.name.split(' ').pop()}</strong>
-                    </span>
-                  </div>
-                )}
+                      {/* Content Section */}
+                      <div className={`p-8 md:p-12 lg:p-16 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                        <p className="text-base md:text-lg text-muted-foreground mb-6 leading-relaxed" data-testid={`text-description-${product.id}`}>
+                          {product.description}
+                        </p>
+
+                        {/* Features */}
+                        <div className="mb-6">
+                          <h3 className="text-lg font-semibold text-foreground mb-3">Key Features:</h3>
+                          <ul className="space-y-2">
+                            {product.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-start text-muted-foreground">
+                                <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Benefits */}
+                        <div className="p-4 bg-primary/5 rounded-lg border border-primary/10 mb-6">
+                          <p className="text-sm md:text-base text-foreground/80" data-testid={`text-benefits-${product.id}`}>
+                            {product.benefits}
+                          </p>
+                        </div>
+
+                        {/* Download Button - only show if catalog exists */}
+                        {product.catalogUrl && (
+                          <Button 
+                            size="lg"
+                            onClick={() => handleDownloadCatalog(product.catalogUrl!, product.name)}
+                            className="bg-primary text-primary-foreground hover-elevate active-elevate-2 w-full md:w-auto"
+                            data-testid={`button-download-catalog-${product.id}`}
+                          >
+                            <Download className="mr-2 h-5 w-5" />
+                            Download Catalog
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogAction onClick={() => setQuoteDialogOpen(false)}>
-                Got it, thanks!
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+            </div>
+          </ScrollAnimation>
+        ))}
+      </div>
+
+      {/* Call to Action */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <ScrollAnimation direction="up">
+          <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
+            <CardContent className="p-8 md:p-12 text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Ready to Transform Your Space?
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Contact us today for a free consultation and quote. Our expert team is ready to help you choose the perfect solution for your project.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  size="lg"
+                  onClick={() => setLocation('/contact')}
+                  className="bg-primary text-primary-foreground hover-elevate active-elevate-2"
+                  data-testid="button-contact-cta"
+                >
+                  Get Free Consultation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  size="lg"
+                  variant="outline"
+                  onClick={() => handleDownloadCatalog(catalogPdf, 'Infeel_V17')}
+                  className="hover-elevate active-elevate-2"
+                  data-testid="button-download-cta"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Download Full Catalog
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </ScrollAnimation>
       </div>
     </div>
   );
