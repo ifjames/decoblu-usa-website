@@ -1,54 +1,79 @@
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLocation } from 'wouter';
-import ScrollAnimation from './ScrollAnimation';
+import { useState, useEffect } from 'react';
 import heroImage from '@assets/stock_images/modern_interior_desi_86661423.jpg';
+import logoImage from '@assets/image_1759294885448.png';
 
 export default function Hero() {
   const [, setLocation] = useLocation();
+  const [animationPlayed, setAnimationPlayed] = useState(false);
+  const { scrollY } = useScroll();
+  
+  // Check if animation has been played in this session
+  useEffect(() => {
+    const hasPlayed = sessionStorage.getItem('heroAnimationPlayed');
+    if (hasPlayed) {
+      setAnimationPlayed(true);
+    } else {
+      sessionStorage.setItem('heroAnimationPlayed', 'true');
+    }
+  }, []);
+
+  // Zoom effect: scale from 1 to 1.2 as user scrolls from 0 to 800px
+  const scale = useTransform(scrollY, [0, 800], [1, 1.2]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        <motion.img
+      {/* Background Image with Zoom on Scroll */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{ scale }}
+      >
+        <img
           src={heroImage}
           alt="Modern interior design with architectural vinyl applications"
           className="w-full h-full object-cover"
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 10, ease: 'linear' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-      </div>
+      </motion.div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-2 mb-8">
-            <Star className="h-4 w-4 text-primary fill-primary" />
-            <span className="text-sm font-medium text-white">Leading Enhancement Specialists</span>
-          </div>
+          {/* Logo with animation (play once only) */}
+          <motion.div
+            className="flex justify-center mb-8"
+            initial={animationPlayed ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: animationPlayed ? 0 : 1, ease: "easeOut" }}
+          >
+            <img 
+              src={logoImage} 
+              alt="DecoBlu USA Logo" 
+              className="h-32 md:h-40 lg:h-48 w-auto"
+              data-testid="img-logo"
+            />
+          </motion.div>
 
-          {/* Main Heading */}
+          {/* Tagline */}
           <motion.h1 
             className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
+            initial={animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: animationPlayed ? 0 : 0.8, delay: animationPlayed ? 0 : 0.2 }}
           >
-            Transform Your Interiors with 
-            <span className="block text-primary">Premium Vinyl Wraps</span>
+            <span className="block text-primary">Transforming Surfaces</span>
           </motion.h1>
 
           {/* Subheading */}
           <motion.p 
             className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
+            initial={animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: animationPlayed ? 0 : 0.8, delay: animationPlayed ? 0 : 0.4 }}
+            data-testid="text-hero-subheading"
           >
             Professional architectural vinyl solutions for cabinets, walls, ceilings, and interior spaces. Transform any surface with premium quality wraps.
           </motion.p>
@@ -56,49 +81,28 @@ export default function Hero() {
           {/* CTA Buttons */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: animationPlayed ? 0 : 0.8, delay: animationPlayed ? 0 : 0.6 }}
           >
             <Button 
               size="lg" 
               className="bg-primary text-primary-foreground border-primary-border hover-elevate active-elevate-2"
-              data-testid="button-get-quote-hero"
+              data-testid="button-contact-us-hero"
               onClick={() => setLocation('/contact')}
             >
-              Get a Quote
+              Contact Us
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
               variant="outline" 
               size="lg"
               className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover-elevate active-elevate-2"
-              data-testid="button-view-catalog"
+              data-testid="button-view-products"
               onClick={() => setLocation('/catalog')}
             >
-              View Catalog
+              View Products
             </Button>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div 
-            className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">15+</div>
-              <div className="text-sm text-gray-300">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">5000+</div>
-              <div className="text-sm text-gray-300">Surfaces Wrapped</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">5★</div>
-              <div className="text-sm text-gray-300">Customer Rating</div>
-            </div>
           </motion.div>
         </div>
       </div>

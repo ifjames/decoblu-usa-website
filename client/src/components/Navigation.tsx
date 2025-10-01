@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence } from 'framer-motion';
+import logoImage from '@assets/image_1759294885448.png';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -39,8 +41,7 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/catalog', label: 'Catalog' },
     { href: isHomePage ? '#services' : '/#services', label: 'Services' },
-    { href: isHomePage ? '#about' : '/#about', label: 'About' },
-    { href: '/contact', label: 'Contact' }
+    { href: isHomePage ? '#about' : '/#about', label: 'About' }
   ];
 
   return (
@@ -50,11 +51,13 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 lg:h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="font-heading font-bold text-2xl lg:text-3xl">
-              <span className="text-primary">DecoBlu</span>
-              <span className="text-foreground"> USA</span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <img 
+              src={logoImage} 
+              alt="DecoBlu USA Logo" 
+              className="h-12 lg:h-16 w-auto"
+              data-testid="img-nav-logo"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -73,19 +76,17 @@ export default function Navigation() {
             ))}
             <Button 
               size="sm" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-2 rounded-md transition-all duration-200 hover:shadow-lg border border-primary"
-              data-testid="button-get-quote"
-              onClick={() => {
-                window.location.href = '/contact';
-              }}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-2 rounded-md transition-all duration-200 hover:shadow-lg border border-primary"
+              data-testid="button-contact-us"
+              onClick={() => setLocation('/contact')}
             >
-              Get Quote
+              Contact Us
             </Button>
           </div>
 
           {/* Tablet Navigation */}
           <div className="hidden md:flex lg:hidden items-center space-x-6">
-            {navLinks.slice(0, 4).map((link) => (
+            {navLinks.slice(0, 3).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -99,12 +100,10 @@ export default function Navigation() {
             ))}
             <Button 
               size="sm" 
-              data-testid="button-get-quote"
-              onClick={() => {
-                window.location.href = '/contact';
-              }}
+              data-testid="button-contact-us"
+              onClick={() => setLocation('/contact')}
             >
-              Get Quote
+              Contact Us
             </Button>
           </div>
 
@@ -120,39 +119,58 @@ export default function Navigation() {
           </Button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden border-t bg-white backdrop-blur-md">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
-                    location === link.href ? 'text-primary' : 'text-muted-foreground'
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                  data-testid={`link-mobile-${link.label.toLowerCase()}`}
+        {/* Mobile Navigation with Animation */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div 
+              className="md:hidden border-t bg-white backdrop-blur-md overflow-hidden"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
+                        location === link.href ? 'text-primary' : 'text-muted-foreground'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                      data-testid={`link-mobile-${link.label.toLowerCase()}`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div 
+                  className="px-3 py-2"
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: navLinks.length * 0.1 }}
                 >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="px-3 py-2">
-                <Button 
-                  size="sm" 
-                  className="w-full" 
-                  data-testid="button-mobile-quote"
-                  onClick={() => {
-                    setIsOpen(false);
-                    window.location.href = '/contact';
-                  }}
-                >
-                  Get Quote
-                </Button>
+                  <Button 
+                    size="sm" 
+                    className="w-full" 
+                    data-testid="button-mobile-contact-us"
+                    onClick={() => {
+                      setIsOpen(false);
+                      setLocation('/contact');
+                    }}
+                  >
+                    Contact Us
+                  </Button>
+                </motion.div>
               </div>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

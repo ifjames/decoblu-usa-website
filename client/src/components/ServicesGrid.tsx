@@ -1,56 +1,66 @@
-import { ArrowRight, Palette, Shield, Sparkles, Home, Layers, Brush, Wrench, Grid3X3 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import ScrollAnimation from './ScrollAnimation';
+import ProductSlideshow from './ProductSlideshow';
 
-const services = [
+const products = [
   {
-    icon: Home,
-    title: 'Cabinet Wrapping',
-    description: 'Transform kitchen and bathroom cabinets with premium vinyl wraps. Cost-effective alternative to replacement.',
-    link: '/catalog',
-  },
-  {
-    icon: Layers,
-    title: 'Wall Covering',
-    description: 'Professional wall vinyl application for residential and commercial spaces. Durable and easy to maintain.',
-    link: '/catalog',
-  },
-  {
-    icon: Grid3X3,
-    title: 'Ceiling Applications',
-    description: 'Innovative ceiling treatments with architectural vinyl films. Perfect for modern interior design.',
-    link: '/catalog',
-  },
-  {
-    icon: Palette,
     title: 'Wood Grain Finishes',
-    description: 'Premium wood grain vinyl patterns including luxury wood textures from our WD series collection.',
-    link: '/catalog',
+    description: 'Premium wood grain vinyl patterns including luxury wood textures from our WD series collection. Perfect for cabinets, walls, and furniture.',
+    images: [
+      new URL('@assets/Infeel_V17_digital_catalog_page-0004.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0005.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0006.jpg', import.meta.url).href,
+    ],
+    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
-    icon: Sparkles,
     title: 'Metal Finishes',
-    description: 'Sophisticated metal-look vinyl wraps including brushed, polished, and textured metal finishes.',
-    link: '/catalog',
+    description: 'Sophisticated metal-look vinyl wraps including brushed, polished, and textured metal finishes for modern interiors.',
+    images: [
+      new URL('@assets/Infeel_V17_digital_catalog_page-0007.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0008.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0009.jpg', import.meta.url).href,
+    ],
+    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
-    icon: Shield,
     title: 'Stone & Marble',
-    description: 'Natural stone and marble-look vinyl films for countertops, walls, and architectural elements.',
-    link: '/catalog',
+    description: 'Natural stone and marble-look vinyl films for countertops, walls, and architectural elements with realistic textures.',
+    images: [
+      new URL('@assets/Infeel_V17_digital_catalog_page-0010.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0011.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0012.jpg', import.meta.url).href,
+    ],
+    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
-    icon: Brush,
-    title: 'Custom Patterns',
-    description: 'Unique fabric, leather, and abstract patterns for specialty interior design applications.',
-    link: '/catalog',
+    title: 'Fabric & Leather',
+    description: 'Unique fabric and leather patterns for specialty interior design applications with authentic textures.',
+    images: [
+      new URL('@assets/Infeel_V17_digital_catalog_page-0013.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0014.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0015.jpg', import.meta.url).href,
+    ],
+    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
-    icon: Wrench,
-    title: 'Professional Installation',
-    description: 'Expert installation services for all architectural vinyl applications by certified technicians.',
-    link: '/catalog',
+    title: 'Solid Colors',
+    description: 'Wide range of solid color vinyl wraps for clean, modern aesthetics and bold design statements.',
+    images: [
+      new URL('@assets/Infeel_V17_digital_catalog_page-0016.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0017.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0018.jpg', import.meta.url).href,
+    ],
+    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
+  },
+  {
+    title: 'Specialty Finishes',
+    description: 'Innovative specialty finishes including abstract patterns, 3D textures, and custom designs for unique projects.',
+    images: [
+      new URL('@assets/Infeel_V17_digital_catalog_page-0019.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0020.jpg', import.meta.url).href,
+      new URL('@assets/Infeel_V17_digital_catalog_page-0021.jpg', import.meta.url).href,
+    ],
+    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
 ];
 
@@ -61,54 +71,32 @@ export default function ServicesGrid() {
         {/* Header */}
         <ScrollAnimation className="text-center mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-            What We Do at{' '}
-            <span className="text-primary">DecoBlu</span>
-            <span className="text-black"> USA</span>
+            Line of Products{' '}
+            <span className="text-primary">INFeel</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Professional architectural vinyl wrapping services for cabinets, walls, ceilings, and interior spaces across the United States.
-          </p>
         </ScrollAnimation>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <ScrollAnimation 
-                key={index}
-                delay={index * 0.1}
-                direction="up"
+        {/* Products Grid with Slideshows */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product, index) => (
+            <ScrollAnimation 
+              key={index}
+              delay={index * 0.1}
+              direction="up"
+            >
+              <div 
+                className="bg-card rounded-lg p-6 hover-elevate transition-all duration-300 h-full"
+                data-testid={`card-product-${index}`}
               >
-                <Card 
-                  className="group hover-elevate transition-all duration-300 h-full"
-                  data-testid={`card-service-${index}`}
-                >
-                  <CardHeader className="text-center pb-4">
-                    <div className="mx-auto mb-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <CardTitle className="font-heading text-xl mb-2">{service.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {service.description}
-                    </p>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                      data-testid={`button-service-${index}`}
-                      onClick={() => window.location.href = '/catalog'}
-                    >
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-            );
-          })}
+                <ProductSlideshow
+                  images={product.images}
+                  title={product.title}
+                  description={product.description}
+                  catalogUrl={product.catalogUrl}
+                />
+              </div>
+            </ScrollAnimation>
+          ))}
         </div>
       </div>
     </section>
