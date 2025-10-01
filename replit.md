@@ -34,13 +34,22 @@ DecoBlu USA is a professional architectural vinyl wrap company specializing in p
 **Home Page Product Section Update (October 1, 2025):**
 - Replaced the "Line of Products INFeel" slideshow section (ServicesGrid component) with detailed product cards
 - Now displays the same comprehensive product information as the dedicated Products page
-- Shows four product lines with logos, descriptions, key features, benefits, and catalog downloads:
+- Shows product lines with logos, descriptions, key features, benefits, and catalog downloads:
   - INFeel Architectural Finish Films
   - DecoBlu Luxury Vinyl Flooring
   - DecoBlu Window Films
   - POV Window Films
+  - Woven by Elite (added October 1, 2025)
 - Each product card includes alternating gradient backgrounds and detailed feature lists
 - Includes "Download Catalog" buttons for products with available catalogs
+
+**Woven by Elite Product Addition (October 1, 2025):**
+- Added new product line: Woven by Elite vinyl floor covering
+- Logo: image_1759322882406.png
+- Product images: image_1759322783228.png, image_1759322907527.png, image_1759322910212.png, image_1759322912547.png, image_1759322929278.png
+- Features woven fabric finish with lightweight PVC foam base layer
+- Multiple backing types for different applications: Comfort rear for tiles, PVC backing for rolls, Foamed PVC backing for carpets, No backing for walls, Thin PVC backing for walls
+- Product appears on both Home page and Products page with full carousel and details
 
 ## User Preferences
 

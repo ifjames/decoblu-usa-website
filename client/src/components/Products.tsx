@@ -27,6 +27,13 @@ import product4_aaa from '@assets/product4/aaa.jpg';
 import product4_bbb from '@assets/product4/bbb.jpg';
 import product4_ccc from '@assets/product4/ccc.jpg';
 
+import wovenLogo from '@assets/image_1759322882406.png';
+import woven_1 from '@assets/image_1759322783228.png';
+import woven_2 from '@assets/image_1759322907527.png';
+import woven_3 from '@assets/image_1759322910212.png';
+import woven_4 from '@assets/image_1759322912547.png';
+import woven_5 from '@assets/image_1759322929278.png';
+
 const products = [
   {
     id: 1,
@@ -94,6 +101,23 @@ const products = [
       'Exclusively for glass surfaces'
     ],
     benefits: 'POV is made of the same special adhesive and film that are used for safety films and therefore it functions similarly to the safety film in the event of glass breakage.',
+    catalogUrl: undefined
+  },
+  {
+    id: 5,
+    name: 'Woven by Elite',
+    logo: wovenLogo,
+    images: [woven_1, woven_2, woven_3, woven_4, woven_5],
+    description: 'Woven by Elite is a vinyl floor covering with a woven fabric finish and a lightweight, non-woven PVC foam base layer. Its high resistance to abrasion and friction provides durability, versatility, and easy cleaning. It offers a wide range of decorative possibilities.',
+    features: [
+      'Woven fabric finish with lightweight PVC foam base',
+      'High resistance to abrasion and friction',
+      'Durable and versatile flooring solution',
+      'Easy to clean and maintain',
+      'Wide range of decorative possibilities',
+      'Multiple backing types for different applications'
+    ],
+    benefits: 'Woven by Elite offers superior durability with multiple backing options: Comfort rear for tiles, PVC backing for rolls, Foamed PVC backing for carpets, No backing for walls, and Thin PVC backing for walls. This versatility makes it suitable for a wide range of applications.',
     catalogUrl: undefined
   }
 ];
