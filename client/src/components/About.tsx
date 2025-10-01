@@ -95,13 +95,11 @@ export default function About() {
 
           {/* Image */}
           <ScrollAnimation direction="right">
-            <div className="relative flex items-center justify-center bg-white dark:bg-background rounded-lg shadow-lg p-12 h-[500px]">
-              <img
-                src={decobluLogo}
-                alt="DecoBlu USA Logo"
-                className="w-auto max-h-full object-contain"
-              />
-            </div>
+            <img
+              src={decobluLogo}
+              alt="DecoBlu USA Logo"
+              className="w-full h-auto object-contain"
+            />
           </ScrollAnimation>
         </div>
       </div>

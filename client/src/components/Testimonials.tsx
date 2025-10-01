@@ -1,8 +1,6 @@
 import { Star, Quote } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import ScrollAnimation from './ScrollAnimation';
-import technicianImage from '@assets/Infeel_V17_digital_catalog_page-0003.jpg';
 
 const testimonials = [
   {
@@ -46,8 +44,8 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <ScrollAnimation key={index} delay={index * 0.2} direction="up">
-            <Card className="hover-elevate transition-all duration-300 h-full" data-testid={`card-testimonial-${index}`}>
-              <CardContent className="p-6">
+            <div className="h-full" data-testid={`card-testimonial-${index}`}>
+              <div className="p-6">
                 {/* Stars */}
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -76,8 +74,8 @@ export default function Testimonials() {
                     <div className="text-sm text-muted-foreground">{testimonial.role}</div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
             </ScrollAnimation>
           ))}
         </div>

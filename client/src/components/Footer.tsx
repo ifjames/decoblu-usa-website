@@ -34,7 +34,7 @@ export default function Footer() {
     <footer className="bg-foreground text-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer */}
-        <div className="py-16">
+        <div className="py-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Brand */}
             <div className="lg:col-span-2">
@@ -86,7 +86,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Footer */}
-        <div className="py-6 border-t border-gray-800">
+        <div className="py-4 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
               © 2025 DecoBlu USA. All rights reserved.
