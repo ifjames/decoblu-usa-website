@@ -18,7 +18,7 @@ DecoBlu USA is a professional architectural vinyl wrap company specializing in p
 - Updated button text: "Get a Quote" → "Contact Us", "View Catalog" → "View Products"
 
 **Navigation Updates:**
-- Replaced text logo with visual logo image
+- Replaced text logo with dual logo setup: icon logo (decoblu_1759298644827.png) on left + text logo (decoblu text logo_1759298657179.png) on right
 - Removed separate contact link from navigation menu
 - Changed "Get Quote" button to "Contact Us" with routing to contact page
 - Enhanced mobile menu with slide-in animations using AnimatePresence

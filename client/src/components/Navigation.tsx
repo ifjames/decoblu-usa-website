@@ -3,7 +3,8 @@ import { Link, useLocation } from 'wouter';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImage from '@assets/image_1759294885448.png';
+import logoIcon from '@assets/decoblu_1759298644827.png';
+import logoText from '@assets/decoblu text logo_1759298657179.png';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,13 +51,19 @@ export default function Navigation() {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 lg:h-24">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+          {/* Logo - Icon + Text */}
+          <Link href="/" className="flex items-center gap-3">
             <img 
-              src={logoImage} 
-              alt="DecoBlu USA Logo" 
+              src={logoIcon} 
+              alt="DecoBlu Icon" 
+              className="h-10 lg:h-14 w-auto"
+              data-testid="img-nav-logo-icon"
+            />
+            <img 
+              src={logoText} 
+              alt="DecoBlu USA" 
               className="h-12 lg:h-16 w-auto"
-              data-testid="img-nav-logo"
+              data-testid="img-nav-logo-text"
             />
           </Link>
 
