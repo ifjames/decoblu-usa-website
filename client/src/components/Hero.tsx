@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
-import heroImage from "@assets/hero bgf.jpg";
+import heroImage from "@assets/hero bg2.jpg";
 import logoImage from "@assets/decoblu text logo.png";
 
 export default function Hero() {
@@ -53,7 +53,7 @@ export default function Hero() {
             <img
               src={logoImage}
               alt="DecoBlu USA Logo"
-              className="h-20 md:h-24 lg:h-36 w-auto"
+              className="h-25 md:h-30 lg:h-48 w-auto"
               data-testid="img-logo"
             />
           </motion.div>
