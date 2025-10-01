@@ -1,23 +1,24 @@
-import { CheckCircle, Award, Users, Zap } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import ScrollAnimation from './ScrollAnimation';
-import decobluLogo from '@assets/decoblu text logo.png';
+import { CheckCircle, Award, Users, Zap } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import ScrollAnimation from "./ScrollAnimation";
+import decobluLogo from "@assets/decobluusa_logo.jpg";
 
 const features = [
   {
     icon: Award,
-    title: 'Certified Professionals',
-    description: 'Expert installers trained in architectural vinyl applications.',
+    title: "Certified Professionals",
+    description:
+      "Expert installers trained in architectural vinyl applications.",
   },
   {
     icon: Users,
-    title: 'Design Team',
-    description: 'Experienced professionals for custom interior solutions.',
+    title: "Design Team",
+    description: "Experienced professionals for custom interior solutions.",
   },
   {
     icon: Zap,
-    title: 'Premium Materials',
-    description: 'High-quality Infeel and architectural grade vinyl films.',
+    title: "Premium Materials",
+    description: "High-quality Infeel and architectural grade vinyl films.",
   },
 ];
 
@@ -28,71 +29,79 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <ScrollAnimation direction="left">
-          <div>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-6">
-              Welcome to{' '}
-              <span className="text-primary">DecoBlu</span>
-              <span className="text-black"> USA</span>
-            </h2>
-            
-            <div className="space-y-4 text-lg text-muted-foreground mb-8">
-              <p>
-                <strong className="text-foreground">DECOBLU INC. IS THE SOLUTION PROVIDER FOR THE ARCHITECTURAL FINISH INDUSTRY.</strong>
-              </p>
-              <p>
-                OUR PRODUCTS RANGE ACROSS INTERIOR DECORATION FILMS, ARCHITECTURAL AND AUTOMOTIVE WINDOW FILMS,
-                INTERIOR DECORATION WINDOW FILMS, AND LUXURY VINYL FLOORING.
-              </p>
-              <p>
-                DECOBLU INC. IS THE PERFECT AND RELIABLE PARTNER FOR YOUR BUSINESS WITH CREATIVE, INNOVATIVE
-                AND CUSTOMER-ORIENTED PRODUCTS.
-              </p>
-            </div>
+            <div>
+              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-6">
+                Welcome to <span className="text-primary">DecoBlu</span>
+                <span className="text-black"> USA</span>
+              </h2>
 
-            {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-              {features.map((feature, index) => {
-                const Icon = feature.icon;
-                return (
-                  <Card key={index} className="border-0 bg-background/50">
-                    <CardContent className="p-4 text-center">
-                      <div className="mx-auto mb-3 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3 className="font-semibold text-sm mb-2">{feature.title}</h3>
-                      <p className="text-xs text-muted-foreground">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
+              <div className="space-y-4 text-lg text-muted-foreground mb-8">
+                <p>
+                  <strong className="text-foreground">
+                    DECOBLU INC. IS THE SOLUTION PROVIDER FOR THE ARCHITECTURAL
+                    FINISH INDUSTRY.
+                  </strong>
+                </p>
+                <p>
+                  OUR PRODUCTS RANGE ACROSS INTERIOR DECORATION FILMS,
+                  ARCHITECTURAL AND AUTOMOTIVE WINDOW FILMS, INTERIOR DECORATION
+                  WINDOW FILMS, AND LUXURY VINYL FLOORING.
+                </p>
+                <p>
+                  DECOBLU INC. IS THE PERFECT AND RELIABLE PARTNER FOR YOUR
+                  BUSINESS WITH CREATIVE, INNOVATIVE AND CUSTOMER-ORIENTED
+                  PRODUCTS.
+                </p>
+              </div>
 
-            {/* Checkmarks */}
-            <div className="space-y-3">
-              {[
-                'Premium Infeel V17 architectural materials',
-                'Comprehensive warranty on installation',
-                'Free consultation and design visualization',
-                'Certified interior installation specialists'
-              ].map((item, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </div>
-              ))}
+              {/* Features */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                {features.map((feature, index) => {
+                  const Icon = feature.icon;
+                  return (
+                    <Card key={index} className="border-0 bg-background/50">
+                      <CardContent className="p-4 text-center">
+                        <div className="mx-auto mb-3 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                          <Icon className="h-6 w-6 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-sm mb-2">
+                          {feature.title}
+                        </h3>
+                        <p className="text-xs text-muted-foreground">
+                          {feature.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+
+              {/* Checkmarks */}
+              <div className="space-y-3">
+                {[
+                  "Premium Infeel V17 architectural materials",
+                  "Comprehensive warranty on installation",
+                  "Free consultation and design visualization",
+                  "Certified interior installation specialists",
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
           </ScrollAnimation>
 
           {/* Image */}
           <ScrollAnimation direction="right">
-          <div className="relative flex items-center justify-center bg-white dark:bg-background rounded-lg shadow-lg p-12 h-[500px]">
-            <img
-              src={decobluLogo}
-              alt="DecoBlu USA Logo"
-              className="w-auto max-h-full object-contain"
-            />
-          </div>
+            <div className="relative flex items-center justify-center bg-white dark:bg-background rounded-lg shadow-lg p-12 h-[500px]">
+              <img
+                src={decobluLogo}
+                alt="DecoBlu USA Logo"
+                className="w-auto max-h-full object-contain"
+              />
+            </div>
           </ScrollAnimation>
         </div>
       </div>
