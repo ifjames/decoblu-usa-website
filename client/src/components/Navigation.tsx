@@ -41,7 +41,6 @@ export default function Navigation() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/products", label: "Products" },
-    { href: isHomePage ? "#services" : "/#services", label: "Services" },
     { href: isHomePage ? "#about" : "/#about", label: "About" },
   ];
 
