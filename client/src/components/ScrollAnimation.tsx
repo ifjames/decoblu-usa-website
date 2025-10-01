@@ -57,7 +57,7 @@ export default function ScrollAnimation({
         ease: 'easeOut'
       }}
       viewport={{ 
-        once: false,
+        once: true,
         margin: '-100px'
       }}
     >
