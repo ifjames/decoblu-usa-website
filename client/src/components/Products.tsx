@@ -43,7 +43,6 @@ const products = [
       'Certified worldwide'
     ],
     benefits: 'It lowers the project costs and maintenance costs. INFEEL has fire retardant and flame resistance treatments and it is certified worldwide. INFEEL has abrasion resistance, dimensional stability, heat resistance, damp resistance, cold temperature resistance and stain resistance.',
-    bgColor: 'from-orange-50 to-white dark:from-orange-950/20 dark:to-background',
     catalogUrl: catalogPdf
   },
   {
@@ -61,7 +60,6 @@ const products = [
       'Cost-effective flooring solution'
     ],
     benefits: 'DECOBLU vinyl flooring brings out the richness and texture of expensive natural materials, such as real woods, abstracts, carpets, stones, granites, fabrics and marbles with the most advanced printing technology.',
-    bgColor: 'from-cyan-50 to-white dark:from-cyan-950/20 dark:to-background',
     catalogUrl: undefined
   },
   {
@@ -79,7 +77,6 @@ const products = [
       'No delaminating, rainbow, or orange peel'
     ],
     benefits: 'DECOBLU films reduce heat, protect from harmful UV rays, enhance privacy, improve safety, and provide cost-effective solutions for both automotive and architectural applications.',
-    bgColor: 'from-blue-50 to-white dark:from-blue-950/20 dark:to-background',
     catalogUrl: undefined
   },
   {
@@ -97,7 +94,6 @@ const products = [
       'Exclusively for glass surfaces'
     ],
     benefits: 'POV is made of the same special adhesive and film that are used for safety films and therefore it functions similarly to the safety film in the event of glass breakage.',
-    bgColor: 'from-red-50 to-white dark:from-red-950/20 dark:to-background',
     catalogUrl: undefined
   }
 ];
@@ -144,7 +140,7 @@ function ProductCarousel({ images, productId }: { images: string[], productId: n
               key={idx} 
               className="flex-[0_0_100%] min-w-0 relative"
             >
-              <div className="relative aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+              <div className="relative aspect-[16/9] bg-transparent border border-foreground/10">
                 <img
                   src={image}
                   alt={`Product ${productId} - Slide ${idx + 1}`}
@@ -222,23 +218,24 @@ export default function Products() {
       </div>
 
       {/* Product Lines */}
-      <div className="space-y-20">
+      <div className="space-y-12">
         {products.map((product, index) => (
           <ScrollAnimation key={product.id} direction={index % 2 === 0 ? 'left' : 'right'}>
-            <div className={`bg-gradient-to-r ${product.bgColor} py-16 md:py-20`}>
+            <div className="py-8">
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Card className="border-0 shadow-2xl overflow-hidden bg-white/95 dark:bg-background/95 backdrop-blur-sm">
+                <Card className="border border-primary/10 shadow-lg overflow-hidden bg-white dark:bg-background">
                   <CardContent className="p-8 md:p-12 lg:p-16">
                     {/* Logo Section at Top */}
                     <div className="text-center mb-8">
-                      <div className="inline-block p-6 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl mb-6">
+                      <div className="inline-block p-4 md:p-6 bg-transparent mb-4">
                         <img 
                           src={product.logo} 
                           alt={`${product.name} logo`}
-                          className="h-20 md:h-24 lg:h-28 w-auto mx-auto"
+                          className="h-20 md:h-24 lg:h-28 w-auto mx-auto drop-shadow-sm"
                           data-testid={`img-logo-${product.id}`}
                         />
                       </div>
+                      <div className="mx-auto mb-6 h-px w-16 bg-primary/30"></div>
                       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4" data-testid={`text-product-name-${product.id}`}>
                         {product.name}
                       </h2>
@@ -257,7 +254,7 @@ export default function Products() {
                     {/* Features & Benefits Grid */}
                     <div className="grid md:grid-cols-2 gap-8 mb-8">
                       {/* Features */}
-                      <div className="bg-gradient-to-br from-primary/5 to-transparent p-6 rounded-xl border border-primary/10">
+                      <div className="bg-primary/3 p-6 rounded-xl border border-primary/10">
                         <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                           <div className="h-1 w-8 bg-primary rounded-full"></div>
                           Key Features
@@ -273,7 +270,7 @@ export default function Products() {
                       </div>
 
                       {/* Benefits */}
-                      <div className="bg-gradient-to-br from-primary/5 to-transparent p-6 rounded-xl border border-primary/10 flex flex-col">
+                      <div className="bg-primary/3 p-6 rounded-xl border border-primary/10 flex flex-col">
                         <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                           <div className="h-1 w-8 bg-primary rounded-full"></div>
                           Benefits
