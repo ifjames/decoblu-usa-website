@@ -75,6 +75,12 @@ DecoBlu USA is a professional architectural vinyl wrap company specializing in p
 - Smooth slide-in/slide-out animations using CSS transforms for professional UX
 - Always visible at the top of the page and when mobile menu is open
 
+**Site Configuration Updates (October 1, 2025):**
+- Set DecoBlu icon logo (decoblu_1759298644827.png) as the site favicon
+- Removed Replit dev banner from the application for cleaner appearance
+- Redesigned 404 page to match website style with Navigation, Footer, and brand-consistent styling
+- 404 page now includes circular alert icon, large "404" text, helpful message, and "Back to Home" button
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
