@@ -23,26 +23,16 @@ DecoBlu USA is a professional architectural vinyl wrap company specializing in p
 - Changed "Get Quote" button to "Contact Us" with routing to contact page
 - Enhanced mobile menu with slide-in animations using AnimatePresence
 
-**Product Showcase Transformation:**
-- Changed "What We Do" section to "Line of Products INFeel"
-- Removed generic service descriptions
-- Implemented automated product slideshows with:
-  - Auto-advance every 4 seconds
-  - Fade-in/fade-out animations
-  - Swipe gesture support (left/right)
-  - Navigation buttons (left/right arrows)
-  - Dot indicators for slide position
-  - Download catalog functionality for each product
-
-**Product Categories:**
-- Wood Grain Finishes
-- Metal Finishes
-- Stone & Marble
-- Fabric & Leather
-- Solid Colors
-- Specialty Finishes
-
-Each product features multiple catalog images from the Infeel V17 collection with descriptions and downloadable PDF catalog.
+**Home Page Product Section Update (October 1, 2025):**
+- Replaced the "Line of Products INFeel" slideshow section (ServicesGrid component) with detailed product cards
+- Now displays the same comprehensive product information as the dedicated Products page
+- Shows four product lines with logos, descriptions, key features, benefits, and catalog downloads:
+  - INFeel Architectural Finish Films
+  - DecoBlu Luxury Vinyl Flooring
+  - DecoBlu Window Films
+  - POV Window Films
+- Each product card includes alternating gradient backgrounds and detailed feature lists
+- Includes "Download Catalog" buttons for products with available catalogs
 
 ## User Preferences
 
