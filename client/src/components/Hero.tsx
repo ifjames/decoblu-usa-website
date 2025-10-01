@@ -57,7 +57,6 @@ export default function Hero() {
           {/* Brand Name */}
           <motion.div
             className="font-bold text-3xl md:text-5xl lg:text-6xl mb-6 tracking-wider"
-            style={{ fontFamily: "'Cinzel', serif" }}
             initial={
               animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
@@ -75,9 +74,6 @@ export default function Hero() {
           {/* Tagline */}
           <motion.h1
             className="font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-12 leading-tight tracking-wide text-center"
-            style={{ 
-              fontFamily: "'Cinzel', serif"
-            }}
             initial={
               animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
             }
