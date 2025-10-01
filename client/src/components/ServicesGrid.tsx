@@ -10,7 +10,7 @@ const products = [
       new URL('@assets/Infeel_V17_digital_catalog_page-0005.jpg', import.meta.url).href,
       new URL('@assets/Infeel_V17_digital_catalog_page-0006.jpg', import.meta.url).href,
     ],
-    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
+    productUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
     title: 'Metal Finishes',
@@ -20,7 +20,7 @@ const products = [
       new URL('@assets/Infeel_V17_digital_catalog_page-0008.jpg', import.meta.url).href,
       new URL('@assets/Infeel_V17_digital_catalog_page-0009.jpg', import.meta.url).href,
     ],
-    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
+    productUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
     title: 'Stone & Marble',
@@ -30,7 +30,7 @@ const products = [
       new URL('@assets/Infeel_V17_digital_catalog_page-0011.jpg', import.meta.url).href,
       new URL('@assets/Infeel_V17_digital_catalog_page-0012.jpg', import.meta.url).href,
     ],
-    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
+    productUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
     title: 'Fabric & Leather',
@@ -40,7 +40,7 @@ const products = [
       new URL('@assets/Infeel_V17_digital_catalog_page-0014.jpg', import.meta.url).href,
       new URL('@assets/Infeel_V17_digital_catalog_page-0015.jpg', import.meta.url).href,
     ],
-    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
+    productUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
     title: 'Solid Colors',
@@ -50,7 +50,7 @@ const products = [
       new URL('@assets/Infeel_V17_digital_catalog_page-0017.jpg', import.meta.url).href,
       new URL('@assets/Infeel_V17_digital_catalog_page-0018.jpg', import.meta.url).href,
     ],
-    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
+    productUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
   {
     title: 'Specialty Finishes',
@@ -60,7 +60,7 @@ const products = [
       new URL('@assets/Infeel_V17_digital_catalog_page-0020.jpg', import.meta.url).href,
       new URL('@assets/Infeel_V17_digital_catalog_page-0021.jpg', import.meta.url).href,
     ],
-    catalogUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
+    productUrl: new URL('@assets/Infeel_V17_digital_catalog_1759042493296.pdf', import.meta.url).href,
   },
 ];
 
@@ -92,7 +92,7 @@ export default function ServicesGrid() {
                   images={product.images}
                   title={product.title}
                   description={product.description}
-                  catalogUrl={product.catalogUrl}
+                  productUrl={product.productUrl}
                 />
               </div>
             </ScrollAnimation>

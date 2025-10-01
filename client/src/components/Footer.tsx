@@ -13,10 +13,10 @@ import {
 
 const footerLinks = {
   services: [
-    { label: 'Color Change Wraps', href: '/catalog' },
-    { label: 'Paint Protection', href: '/catalog' },
-    { label: 'Chrome Delete', href: '/catalog' },
-    { label: 'Custom Graphics', href: '/catalog' },
+    { label: 'Color Change Wraps', href: '/products' },
+    { label: 'Paint Protection', href: '/products' },
+    { label: 'Chrome Delete', href: '/products' },
+    { label: 'Custom Graphics', href: '/products' },
   ],
   company: [
     { label: 'About Us', href: '#about' },

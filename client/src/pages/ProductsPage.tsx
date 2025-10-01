@@ -1,14 +1,14 @@
 import Navigation from '@/components/Navigation';
-import Catalog from '@/components/Catalog';
+import Products from '@/components/Products';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 
-export default function CatalogPage() {
+export default function ProductsPage() {
   return (
     <div className="min-h-screen">
       <SmoothScroll />
       <Navigation />
-      <Catalog />
+      <Products />
       <Footer />
     </div>
   );

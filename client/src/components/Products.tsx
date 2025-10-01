@@ -110,7 +110,7 @@ const vinylWraps = [
 
 const categories = ['All', 'Premium Solid', 'Solid Matt', 'Wood', 'Metal', 'Stone', 'Fabric'];
 
-export default function Catalog() {
+export default function Products() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedProduct, setSelectedProduct] = useState<typeof vinylWraps[0] | null>(null);
@@ -130,7 +130,7 @@ export default function Catalog() {
         {/* Header */}
         <ScrollAnimation className="text-center mb-12">
           <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-            Infeel V17 Catalog
+            Infeel V17 Products
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Explore our comprehensive collection of premium architectural vinyl wraps from the Infeel V17 series for interior applications.
@@ -146,7 +146,7 @@ export default function Catalog() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
-              data-testid="input-search-catalog"
+              data-testid="input-search-products"
             />
           </div>
           <div className="flex gap-2">

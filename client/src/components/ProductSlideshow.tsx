@@ -7,10 +7,10 @@ interface ProductSlideshowProps {
   images: string[];
   title: string;
   description: string;
-  catalogUrl?: string;
+  productUrl?: string;
 }
 
-export default function ProductSlideshow({ images, title, description, catalogUrl }: ProductSlideshowProps) {
+export default function ProductSlideshow({ images, title, description, productUrl }: ProductSlideshowProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -127,16 +127,16 @@ export default function ProductSlideshow({ images, title, description, catalogUr
         <p className="text-muted-foreground leading-relaxed" data-testid="text-product-description">
           {description}
         </p>
-        {catalogUrl && (
+        {productUrl && (
           <Button
             variant="outline"
             size="sm"
             className="w-full hover:bg-primary hover:text-primary-foreground transition-colors"
-            data-testid="button-download-catalog"
-            onClick={() => window.open(catalogUrl, '_blank')}
+            data-testid="button-download-product-guide"
+            onClick={() => window.open(productUrl, '_blank')}
           >
             <Download className="mr-2 h-4 w-4" />
-            Download Catalog
+            Download Product Guide
           </Button>
         )}
       </div>

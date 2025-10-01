@@ -24,17 +24,17 @@ import {
 import ScrollAnimation from './ScrollAnimation';
 
 const categoryPages = [
-  { label: 'Wrapping', href: '/catalog' },
-  { label: 'Window & Light Tinting', href: '/catalog' },
-  { label: 'Caliper Painting', href: '/catalog' },
-  { label: 'Carbon Fibre Wraps', href: '/catalog' },
-  { label: 'Paint Protection Film', href: '/catalog' },
-  { label: 'CeramicPRO Coating', href: '/catalog' },
-  { label: 'De-chroming', href: '/catalog' },
-  { label: 'Interior Wraps', href: '/catalog' },
-  { label: 'Commercial', href: '/catalog' },
-  { label: 'Design', href: '/catalog' },
-  { label: 'Online Shop', href: '/catalog' },
+  { label: 'Wrapping', href: '/products' },
+  { label: 'Window & Light Tinting', href: '/products' },
+  { label: 'Caliper Painting', href: '/products' },
+  { label: 'Carbon Fibre Wraps', href: '/products' },
+  { label: 'Paint Protection Film', href: '/products' },
+  { label: 'CeramicPRO Coating', href: '/products' },
+  { label: 'De-chroming', href: '/products' },
+  { label: 'Interior Wraps', href: '/products' },
+  { label: 'Commercial', href: '/products' },
+  { label: 'Design', href: '/products' },
+  { label: 'Online Shop', href: '/products' },
 ];
 
 const serviceOptions = [
@@ -173,14 +173,14 @@ export default function Contact() {
                     {serviceOptions.slice(0, 6).map((service, index) => (
                       <a
                         key={index}
-                        href="/catalog"
+                        href="/products"
                         className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                       >
                         • {service}
                       </a>
                     ))}
                     <a
-                      href="/catalog"
+                      href="/products"
                       className="block text-sm text-primary font-medium hover:underline"
                     >
                       View all services →

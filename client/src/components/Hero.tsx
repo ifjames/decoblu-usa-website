@@ -53,7 +53,7 @@ export default function Hero() {
             <img
               src={logoImage}
               alt="DecoBlu USA Logo"
-              className="h-25 md:h-30 lg:h-48 w-auto"
+              className="h-20 md:h-24 lg:h-36 w-auto"
               data-testid="img-logo"
             />
           </motion.div>
@@ -117,7 +117,7 @@ export default function Hero() {
               size="lg"
               className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover-elevate active-elevate-2"
               data-testid="button-view-products"
-              onClick={() => setLocation("/catalog")}
+              onClick={() => setLocation("/products")}
             >
               View Products
             </Button>
