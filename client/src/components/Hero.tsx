@@ -7,9 +7,25 @@ import heroImage from "@assets/hero bg3.jpg";
 import logoImage from "@assets/decoblu text logo.png";
 
 export default function Hero() {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
   const [animationPlayed, setAnimationPlayed] = useState(false);
   const { scrollY } = useScroll();
+
+  const handleViewProducts = () => {
+    // If already on home page, scroll to products section
+    if (location === "/") {
+      const productsSection = document.querySelector("#products");
+      if (productsSection) {
+        productsSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    } else {
+      // Navigate to products page if on a different page
+      setLocation("/products");
+    }
+  };
 
   // Check if animation has been played in this session
   useEffect(() => {
@@ -117,7 +133,7 @@ export default function Hero() {
               size="lg"
               className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover-elevate active-elevate-2"
               data-testid="button-view-products"
-              onClick={() => setLocation("/products")}
+              onClick={handleViewProducts}
             >
               View Products
             </Button>

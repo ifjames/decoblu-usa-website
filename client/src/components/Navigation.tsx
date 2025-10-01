@@ -44,6 +44,41 @@ export default function Navigation() {
     { href: isHomePage ? "#about" : "/#about", label: "About" },
   ];
 
+  const handleNavClick = (href: string, e: React.MouseEvent) => {
+    // If it's a hash link on the current page
+    if (href.startsWith("#") && isHomePage) {
+      e.preventDefault();
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+      setIsOpen(false);
+    }
+    // If it's a path with hash like "/#products" from another page
+    else if (href.startsWith("/#")) {
+      e.preventDefault();
+      setLocation("/");
+      setTimeout(() => {
+        const hash = href.substring(1); // Remove the leading "/"
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }, 100);
+      setIsOpen(false);
+    }
+    // Regular navigation
+    else {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm border-b shadow-md transition-transform duration-300 ease-in-out ${
@@ -71,16 +106,30 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-10 xl:space-x-12">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-base font-medium transition-colors duration-200 hover:text-primary uppercase tracking-wide ${
-                  location === link.href ? "text-primary" : "text-foreground"
-                }`}
-                data-testid={`link-nav-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </Link>
+              link.href.includes("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(link.href, e)}
+                  className={`text-base font-medium transition-colors duration-200 hover:text-primary uppercase tracking-wide cursor-pointer ${
+                    location === link.href ? "text-primary" : "text-foreground"
+                  }`}
+                  data-testid={`link-nav-${link.label.toLowerCase()}`}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-base font-medium transition-colors duration-200 hover:text-primary uppercase tracking-wide ${
+                    location === link.href ? "text-primary" : "text-foreground"
+                  }`}
+                  data-testid={`link-nav-${link.label.toLowerCase()}`}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
             <Button
               size="sm"
@@ -95,18 +144,34 @@ export default function Navigation() {
           {/* Tablet Navigation */}
           <div className="hidden md:flex lg:hidden items-center space-x-6">
             {navLinks.slice(0, 3).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location === link.href
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-                data-testid={`link-nav-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </Link>
+              link.href.includes("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(link.href, e)}
+                  className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                    location === link.href
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                  data-testid={`link-nav-${link.label.toLowerCase()}`}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    location === link.href
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                  data-testid={`link-nav-${link.label.toLowerCase()}`}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
             <Button
               size="sm"
@@ -147,18 +212,33 @@ export default function Navigation() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link
-                      href={link.href}
-                      className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
-                        location === link.href
-                          ? "text-primary"
-                          : "text-muted-foreground"
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                      data-testid={`link-mobile-${link.label.toLowerCase()}`}
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href.includes("#") ? (
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleNavClick(link.href, e)}
+                        className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary cursor-pointer ${
+                          location === link.href
+                            ? "text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                        data-testid={`link-mobile-${link.label.toLowerCase()}`}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
+                          location === link.href
+                            ? "text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                        onClick={() => setIsOpen(false)}
+                        data-testid={`link-mobile-${link.label.toLowerCase()}`}
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </motion.div>
                 ))}
                 <motion.div

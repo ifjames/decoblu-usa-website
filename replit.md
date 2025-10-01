@@ -51,6 +51,17 @@ DecoBlu USA is a professional architectural vinyl wrap company specializing in p
 - Multiple backing types for different applications: Comfort rear for tiles, PVC backing for rolls, Foamed PVC backing for carpets, No backing for walls, Thin PVC backing for walls
 - Product appears on both Home page and Products page with full carousel and details
 
+**Catalog Download Updates (October 1, 2025):**
+- Updated all product catalog buttons to open Google Drive links in new tabs
+- INFeel, Woven, Flooring, POV Window Films, and DecoBlu Window Films now link to their respective Google Drive catalogs
+
+**Mobile and Desktop Navigation Fixes (October 1, 2025):**
+- Fixed navigation links to properly scroll to sections on the same page (mobile and desktop)
+- Fixed "View Products" button in hero section to scroll to products section when on home page
+- Added smooth scroll behavior for hash links (#products, #about) on all devices
+- Navigation now properly closes mobile menu after selecting a section link
+- All scrollbars hidden across the website while maintaining scroll functionality
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
