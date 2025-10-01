@@ -1,8 +1,10 @@
-import { Download, ArrowRight } from 'lucide-react';
+import { Download, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLocation } from 'wouter';
 import ScrollAnimation from './ScrollAnimation';
+import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback, useEffect, useState } from 'react';
 import infeelLogo from '@assets/image_1759301171336.png';
 import decobluFlooringLogo from '@assets/image_1759301420207.png';
 import decobluWindowLogo from '@assets/image_1759301424430.png';
@@ -100,6 +102,99 @@ const products = [
   }
 ];
 
+function ProductCarousel({ images, productId }: { images: string[], productId: number }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    
+    // Auto-play
+    const intervalId = setInterval(() => {
+      if (emblaApi) emblaApi.scrollNext();
+    }, 4000);
+
+    return () => {
+      clearInterval(intervalId);
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  return (
+    <div className="relative group">
+      <div className="overflow-hidden rounded-xl shadow-2xl" ref={emblaRef}>
+        <div className="flex">
+          {images.map((image, idx) => (
+            <div 
+              key={idx} 
+              className="flex-[0_0_100%] min-w-0 relative"
+            >
+              <div className="relative aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+                <img
+                  src={image}
+                  alt={`Product ${productId} - Slide ${idx + 1}`}
+                  className="absolute inset-0 w-full h-full object-cover animate-in fade-in duration-700"
+                  data-testid={`img-product-${productId}-${idx}`}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={scrollPrev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-black/90 text-foreground p-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 hover:bg-white dark:hover:bg-black z-10"
+        data-testid={`button-prev-${productId}`}
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      <button
+        onClick={scrollNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-black/90 text-foreground p-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 hover:bg-white dark:hover:bg-black z-10"
+        data-testid={`button-next-${productId}`}
+        aria-label="Next image"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center gap-2 mt-4">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => emblaApi?.scrollTo(idx)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              idx === selectedIndex 
+                ? 'w-8 bg-primary' 
+                : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+            }`}
+            data-testid={`dot-${productId}-${idx}`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Products() {
   const [, setLocation] = useLocation();
   
@@ -111,7 +206,7 @@ export default function Products() {
   };
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen py-20 bg-gradient-to-b from-background to-muted/20">
       {/* Header Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <ScrollAnimation direction="up">
@@ -127,79 +222,80 @@ export default function Products() {
       </div>
 
       {/* Product Lines */}
-      <div className="space-y-0">
+      <div className="space-y-20">
         {products.map((product, index) => (
           <ScrollAnimation key={product.id} direction={index % 2 === 0 ? 'left' : 'right'}>
-            <div className={`bg-gradient-to-r ${product.bgColor} py-16 md:py-24`}>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Card className="border-0 shadow-2xl overflow-hidden bg-white/80 dark:bg-background/80 backdrop-blur-sm">
+            <div className={`bg-gradient-to-r ${product.bgColor} py-16 md:py-20`}>
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Card className="border-0 shadow-2xl overflow-hidden bg-white/95 dark:bg-background/95 backdrop-blur-sm">
                   <CardContent className="p-8 md:p-12 lg:p-16">
                     {/* Logo Section at Top */}
                     <div className="text-center mb-8">
-                      <img 
-                        src={product.logo} 
-                        alt={`${product.name} logo`}
-                        className="h-24 md:h-32 lg:h-40 w-auto mx-auto mb-4"
-                        data-testid={`img-logo-${product.id}`}
-                      />
-                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground" data-testid={`text-product-name-${product.id}`}>
+                      <div className="inline-block p-6 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl mb-6">
+                        <img 
+                          src={product.logo} 
+                          alt={`${product.name} logo`}
+                          className="h-20 md:h-24 lg:h-28 w-auto mx-auto"
+                          data-testid={`img-logo-${product.id}`}
+                        />
+                      </div>
+                      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4" data-testid={`text-product-name-${product.id}`}>
                         {product.name}
                       </h2>
                     </div>
 
-                    {/* Product Images Grid */}
-                    <div className={`grid gap-4 mb-8 ${
-                      product.images.length === 2 ? 'grid-cols-1 md:grid-cols-2' :
-                      product.images.length === 3 ? 'grid-cols-1 md:grid-cols-3' :
-                      'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
-                    }`}>
-                      {product.images.map((image, idx) => (
-                        <div key={idx} className="relative overflow-hidden rounded-lg shadow-md aspect-video">
-                          <img
-                            src={image}
-                            alt={`${product.name} - Image ${idx + 1}`}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                            data-testid={`img-product-${product.id}-${idx}`}
-                          />
-                        </div>
-                      ))}
+                    {/* Product Carousel */}
+                    <div className="mb-10">
+                      <ProductCarousel images={product.images} productId={product.id} />
                     </div>
 
                     {/* Description */}
-                    <p className="text-base md:text-lg text-muted-foreground mb-6 leading-relaxed" data-testid={`text-description-${product.id}`}>
+                    <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed text-center max-w-4xl mx-auto" data-testid={`text-description-${product.id}`}>
                       {product.description}
                     </p>
 
-                    {/* Features */}
-                    <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-foreground mb-3">Key Features:</h3>
-                      <ul className="space-y-2">
-                        {product.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start text-muted-foreground">
-                            <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {/* Features & Benefits Grid */}
+                    <div className="grid md:grid-cols-2 gap-8 mb-8">
+                      {/* Features */}
+                      <div className="bg-gradient-to-br from-primary/5 to-transparent p-6 rounded-xl border border-primary/10">
+                        <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                          <div className="h-1 w-8 bg-primary rounded-full"></div>
+                          Key Features
+                        </h3>
+                        <ul className="space-y-3">
+                          {product.features.map((feature, idx) => (
+                            <li key={idx} className="flex items-start text-muted-foreground">
+                              <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm md:text-base">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    {/* Benefits */}
-                    <div className="p-4 bg-primary/5 rounded-lg border border-primary/10 mb-6">
-                      <p className="text-sm md:text-base text-foreground/80" data-testid={`text-benefits-${product.id}`}>
-                        {product.benefits}
-                      </p>
+                      {/* Benefits */}
+                      <div className="bg-gradient-to-br from-primary/5 to-transparent p-6 rounded-xl border border-primary/10 flex flex-col">
+                        <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                          <div className="h-1 w-8 bg-primary rounded-full"></div>
+                          Benefits
+                        </h3>
+                        <p className="text-sm md:text-base text-foreground/80 flex-grow" data-testid={`text-benefits-${product.id}`}>
+                          {product.benefits}
+                        </p>
+                      </div>
                     </div>
 
                     {/* Download Button */}
-                    <Button 
-                      size="lg"
-                      onClick={() => handleDownloadCatalog(product.catalogUrl || catalogPdf, product.name)}
-                      className="bg-primary text-primary-foreground hover-elevate active-elevate-2 w-full md:w-auto"
-                      data-testid={`button-download-catalog-${product.id}`}
-                    >
-                      <Download className="mr-2 h-5 w-5" />
-                      Download Catalog
-                    </Button>
+                    <div className="text-center">
+                      <Button 
+                        size="lg"
+                        onClick={() => handleDownloadCatalog(product.catalogUrl || catalogPdf, product.name)}
+                        className="bg-primary text-primary-foreground hover-elevate active-elevate-2 px-8 py-6 text-lg"
+                        data-testid={`button-download-catalog-${product.id}`}
+                      >
+                        <Download className="mr-2 h-5 w-5" />
+                        Download Catalog
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
@@ -209,21 +305,21 @@ export default function Products() {
       </div>
 
       {/* Call to Action */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
         <ScrollAnimation direction="up">
-          <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
+          <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20 shadow-xl">
             <CardContent className="p-8 md:p-12 text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Ready to Transform Your Space?
               </h3>
-              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Contact us today for a free consultation and quote. Our expert team is ready to help you choose the perfect solution for your project.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg"
                   onClick={() => setLocation('/contact')}
-                  className="bg-primary text-primary-foreground hover-elevate active-elevate-2"
+                  className="bg-primary text-primary-foreground hover-elevate active-elevate-2 px-8 py-6 text-lg"
                   data-testid="button-contact-cta"
                 >
                   Get Free Consultation
@@ -233,7 +329,7 @@ export default function Products() {
                   size="lg"
                   variant="outline"
                   onClick={() => handleDownloadCatalog(catalogPdf, 'Infeel_V17')}
-                  className="hover-elevate active-elevate-2"
+                  className="hover-elevate active-elevate-2 px-8 py-6 text-lg border-2"
                   data-testid="button-download-cta"
                 >
                   <Download className="mr-2 h-5 w-5" />
