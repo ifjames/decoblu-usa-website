@@ -57,6 +57,10 @@ export default function Hero() {
           {/* Brand Name */}
           <motion.div
             className="font-bold text-3xl md:text-5xl lg:text-6xl mb-6 tracking-wider"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              textShadow: '0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3), 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2)'
+            }}
             initial={
               animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
@@ -66,14 +70,18 @@ export default function Hero() {
               delay: animationPlayed ? 0 : 0.1,
             }}
           >
-            <span className="text-white">Deco</span>
-            <span className="text-primary">Blu</span>
-            <span className="text-white"> USA</span>
+            <span className="text-white" style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6)' }}>Deco</span>
+            <span className="text-primary" style={{ textShadow: '0 0 20px rgba(37, 99, 235, 0.8), 0 0 40px rgba(37, 99, 235, 0.5), 0 4px 8px rgba(0, 0, 0, 0.6)' }}>Blu</span>
+            <span className="text-white" style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6)' }}> USA</span>
           </motion.div>
 
           {/* Tagline */}
           <motion.h1
             className="font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-12 leading-tight tracking-wide text-center"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              textShadow: '0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6), 0 6px 12px rgba(0, 0, 0, 0.4)'
+            }}
             initial={
               animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
             }
