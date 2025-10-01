@@ -2,7 +2,47 @@
 
 ## Overview
 
-DecoBlu USA is a professional architectural vinyl wrap company specializing in premium interior transformations. The application is a modern, responsive website showcasing their services for cabinet wrapping, wall covering, ceiling applications, and custom interior design solutions. Built as a single-page application with a dedicated catalog page, it features smooth animations, modern design elements, and comprehensive service information to attract and convert potential customers.
+DecoBlu USA is a professional architectural vinyl wrap company specializing in premium surface transformations. The application is a modern, responsive website showcasing their INFeel product line with advanced slideshow features, smooth animations, and mobile-optimized design. The tagline "Transforming Surfaces" emphasizes their core service of surface transformation across automotive and interior applications.
+
+## Recent Changes (October 2025)
+
+**Brand and Visual Updates:**
+- Integrated new DecoBlu USA logo (image_1759294885448.png) in navigation and hero sections
+- Updated tagline from "Transforming Interiors" to "Transforming Surfaces"
+- Removed statistics section (15+ years experience, 5000+ surfaces, etc.)
+- Removed "Leading Enhancement Specialists" badge
+
+**Hero Component Updates:**
+- Implemented show-once animation that plays only on first visit (session-based)
+- Added zoom in/out effect on background image during scroll using Framer Motion
+- Updated button text: "Get a Quote" → "Contact Us", "View Catalog" → "View Products"
+
+**Navigation Updates:**
+- Replaced text logo with visual logo image
+- Removed separate contact link from navigation menu
+- Changed "Get Quote" button to "Contact Us" with routing to contact page
+- Enhanced mobile menu with slide-in animations using AnimatePresence
+
+**Product Showcase Transformation:**
+- Changed "What We Do" section to "Line of Products INFeel"
+- Removed generic service descriptions
+- Implemented automated product slideshows with:
+  - Auto-advance every 4 seconds
+  - Fade-in/fade-out animations
+  - Swipe gesture support (left/right)
+  - Navigation buttons (left/right arrows)
+  - Dot indicators for slide position
+  - Download catalog functionality for each product
+
+**Product Categories:**
+- Wood Grain Finishes
+- Metal Finishes
+- Stone & Marble
+- Fabric & Leather
+- Solid Colors
+- Specialty Finishes
+
+Each product features multiple catalog images from the Infeel V17 collection with descriptions and downloadable PDF catalog.
 
 ## User Preferences
 
