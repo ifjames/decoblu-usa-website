@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
-import heroImage from "@assets/hero bg2.jpg";
+import heroImage from "@assets/hero bg3.jpg";
 import logoImage from "@assets/decoblu text logo.png";
 
 export default function Hero() {
