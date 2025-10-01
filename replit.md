@@ -6,6 +6,14 @@ DecoBlu USA is a professional architectural vinyl wrap company specializing in p
 
 ## Recent Changes (October 2025)
 
+**Replit Import Setup (October 1, 2025):**
+- Successfully imported GitHub repository to Replit environment
+- Configured workflow "Start application" to run `npm run dev` on port 5000 with webview output
+- Verified Vite configuration has `allowedHosts: true` for Replit proxy compatibility
+- Set up deployment configuration for autoscale with build and start scripts
+- Confirmed server is correctly binding to 0.0.0.0:5000 for frontend access
+- All code passing LSP diagnostics with no errors
+
 **Brand and Visual Updates:**
 - Integrated new DecoBlu USA logo (image_1759294885448.png) in navigation and hero sections
 - Updated tagline from "Transforming Interiors" to "Transforming Surfaces"
