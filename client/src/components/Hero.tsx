@@ -54,17 +54,38 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
-          {/* Tagline */}
-          <motion.h1
-            className="font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-12 leading-tight tracking-wide"
+          {/* Brand Name */}
+          <motion.div
+            className="font-bold text-3xl md:text-5xl lg:text-6xl mb-6 tracking-wider"
             style={{ fontFamily: "'Cinzel', serif" }}
+            initial={
+              animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+            }
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: animationPlayed ? 0 : 0.6,
+              delay: animationPlayed ? 0 : 0.1,
+            }}
+          >
+            <span className="text-white">Deco</span>
+            <span className="text-primary">Blu</span>
+            <span className="text-white"> USA</span>
+          </motion.div>
+
+          {/* Tagline with 3D Effect */}
+          <motion.h1
+            className="font-bold text-5xl md:text-7xl lg:text-9xl text-white mb-12 leading-tight tracking-wide"
+            style={{ 
+              fontFamily: "'Cinzel', serif",
+              textShadow: '0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15)'
+            }}
             initial={
               animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
             }
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: animationPlayed ? 0 : 0.8,
-              delay: animationPlayed ? 0 : 0.2,
+              delay: animationPlayed ? 0 : 0.3,
             }}
           >
             <span className="block">Transforming Surfaces</span>
