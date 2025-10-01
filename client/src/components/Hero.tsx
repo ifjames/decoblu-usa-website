@@ -105,7 +105,7 @@ export default function Hero() {
           >
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground border-primary-border hover-elevate active-elevate-2"
+              className="bg-primary text-primary-foreground hover-elevate active-elevate-2"
               data-testid="button-contact-us-hero"
               onClick={() => setLocation("/contact")}
             >

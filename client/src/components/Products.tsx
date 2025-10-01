@@ -208,7 +208,7 @@ export default function Products() {
         <ScrollAnimation direction="up">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-products-title">
-              Our Product Lines
+              Line of Products
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-products-subtitle">
               Explore our comprehensive collection of premium architectural films, flooring, and window solutions for interior and exterior applications.
@@ -218,64 +218,69 @@ export default function Products() {
       </div>
 
       {/* Product Lines */}
-      <div className="space-y-12">
+      <div className="space-y-16">
         {products.map((product, index) => (
           <ScrollAnimation key={product.id} direction={index % 2 === 0 ? 'left' : 'right'}>
-            <div className="py-8">
+            <div className="py-4">
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Card className="border border-primary/10 shadow-lg overflow-hidden bg-white dark:bg-background">
-                  <CardContent className="p-8 md:p-12 lg:p-16">
-                    {/* Logo Section at Top */}
-                    <div className="text-center mb-8">
-                      <div className="inline-block p-4 md:p-6 bg-transparent mb-4">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-white via-primary/[0.02] to-white dark:from-background dark:via-primary/5 dark:to-background border-0 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_20px_60px_rgb(0,0,0,0.15)] transition-all duration-500 group">
+                  {/* 3D Depth Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/[0.03] to-primary/[0.08] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <CardContent className="relative p-6 md:p-10 lg:p-12">
+                    {/* Logo Section */}
+                    <div className="text-center mb-6">
+                      <div className="inline-block p-3 md:p-4 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl shadow-sm mb-4">
                         <img 
                           src={product.logo} 
                           alt={`${product.name} logo`}
-                          className="h-20 md:h-24 lg:h-28 w-auto mx-auto drop-shadow-sm"
+                          className="h-16 md:h-20 lg:h-24 w-auto mx-auto drop-shadow-md"
                           data-testid={`img-logo-${product.id}`}
                         />
                       </div>
-                      <div className="mx-auto mb-6 h-px w-16 bg-primary/30"></div>
-                      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4" data-testid={`text-product-name-${product.id}`}>
+                      <div className="mx-auto mb-4 h-0.5 w-12 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-3" data-testid={`text-product-name-${product.id}`}>
                         {product.name}
                       </h2>
                     </div>
 
                     {/* Product Carousel */}
-                    <div className="mb-10">
+                    <div className="mb-8 rounded-2xl overflow-hidden shadow-xl ring-1 ring-primary/10">
                       <ProductCarousel images={product.images} productId={product.id} />
                     </div>
 
                     {/* Description */}
-                    <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed text-center max-w-4xl mx-auto" data-testid={`text-description-${product.id}`}>
+                    <p className="text-sm md:text-base text-muted-foreground/90 mb-6 leading-relaxed text-center max-w-4xl mx-auto" data-testid={`text-description-${product.id}`}>
                       {product.description}
                     </p>
 
                     {/* Features & Benefits Grid */}
-                    <div className="grid md:grid-cols-2 gap-8 mb-8">
+                    <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6">
                       {/* Features */}
-                      <div className="bg-primary/3 p-6 rounded-xl border border-primary/10">
-                        <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                          <div className="h-1 w-8 bg-primary rounded-full"></div>
+                      <div className="relative bg-gradient-to-br from-primary/[0.08] to-primary/[0.04] p-5 md:p-6 rounded-xl border border-primary/20 shadow-sm backdrop-blur-sm">
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-3xl"></div>
+                        <h3 className="text-base md:text-lg font-bold text-foreground mb-3 flex items-center gap-2">
+                          <div className="h-1 w-6 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
                           Key Features
                         </h3>
-                        <ul className="space-y-3">
+                        <ul className="space-y-2">
                           {product.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-start text-muted-foreground">
-                              <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                              <span className="text-sm md:text-base">{feature}</span>
+                            <li key={idx} className="flex items-start text-muted-foreground group/item">
+                              <ArrowRight className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0 group-hover/item:translate-x-1 transition-transform" />
+                              <span className="text-xs md:text-sm leading-relaxed">{feature}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
                       {/* Benefits */}
-                      <div className="bg-primary/3 p-6 rounded-xl border border-primary/10 flex flex-col">
-                        <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                          <div className="h-1 w-8 bg-primary rounded-full"></div>
+                      <div className="relative bg-gradient-to-br from-primary/[0.08] to-primary/[0.04] p-5 md:p-6 rounded-xl border border-primary/20 shadow-sm backdrop-blur-sm flex flex-col">
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full blur-3xl"></div>
+                        <h3 className="text-base md:text-lg font-bold text-foreground mb-3 flex items-center gap-2">
+                          <div className="h-1 w-6 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
                           Benefits
                         </h3>
-                        <p className="text-sm md:text-base text-foreground/80 flex-grow" data-testid={`text-benefits-${product.id}`}>
+                        <p className="text-xs md:text-sm text-muted-foreground/90 leading-relaxed flex-grow" data-testid={`text-benefits-${product.id}`}>
                           {product.benefits}
                         </p>
                       </div>
@@ -284,12 +289,12 @@ export default function Products() {
                     {/* Download Button */}
                     <div className="text-center">
                       <Button 
-                        size="lg"
+                        size="default"
                         onClick={() => handleDownloadCatalog(product.catalogUrl || catalogPdf, product.name)}
-                        className="bg-primary text-primary-foreground hover-elevate active-elevate-2 px-8 py-6 text-lg"
+                        className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300 px-6 py-2"
                         data-testid={`button-download-catalog-${product.id}`}
                       >
-                        <Download className="mr-2 h-5 w-5" />
+                        <Download className="mr-2 h-4 w-4" />
                         Download Catalog
                       </Button>
                     </div>
