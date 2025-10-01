@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
-import heroImage from "@assets/hero bg3.jpg";
+import heroImage from "@assets/hero bg3.jpeg";
 
 export default function Hero() {
   const [location, setLocation] = useLocation();
@@ -16,8 +16,8 @@ export default function Hero() {
       const productsSection = document.querySelector("#products");
       if (productsSection) {
         productsSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
+          behavior: "smooth",
+          block: "start",
         });
       }
     } else {
@@ -59,7 +59,8 @@ export default function Hero() {
             className="font-bold text-3xl md:text-5xl lg:text-6xl mb-6 tracking-wider"
             style={{
               fontFamily: "'Montserrat', sans-serif",
-              textShadow: '0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3), 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2)'
+              textShadow:
+                "0 0 10px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4)",
             }}
             initial={
               animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
@@ -70,9 +71,34 @@ export default function Hero() {
               delay: animationPlayed ? 0 : 0.1,
             }}
           >
-            <span className="text-white" style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6)' }}>Deco</span>
-            <span className="text-primary" style={{ textShadow: '0 0 20px rgba(37, 99, 235, 0.8), 0 0 40px rgba(37, 99, 235, 0.5), 0 4px 8px rgba(0, 0, 0, 0.6)' }}>Blu</span>
-            <span className="text-white" style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6)' }}> USA</span>
+            <span
+              className="text-white"
+              style={{
+                textShadow:
+                  "0 0 10px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4)",
+              }}
+            >
+              Deco
+            </span>
+            <span
+              className="text-primary"
+              style={{
+                textShadow:
+                  "0 0 15px rgba(37, 99, 235, 0.4), 0 2px 4px rgba(0, 0, 0, 0.4)",
+              }}
+            >
+              Blu
+            </span>
+            <span
+              className="text-white"
+              style={{
+                textShadow:
+                  "0 0 10px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4)",
+              }}
+            >
+              {" "}
+              USA
+            </span>
           </motion.div>
 
           {/* Tagline */}
@@ -80,7 +106,8 @@ export default function Hero() {
             className="font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-12 leading-tight tracking-wide text-center"
             style={{
               fontFamily: "'Montserrat', sans-serif",
-              textShadow: '0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6), 0 6px 12px rgba(0, 0, 0, 0.4)'
+              textShadow:
+                "0 0 10px rgba(255, 255, 255, 0.3), 0 2px 6px rgba(0, 0, 0, 0.5)",
             }}
             initial={
               animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }

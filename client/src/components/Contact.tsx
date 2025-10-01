@@ -38,16 +38,11 @@ const categoryPages = [
 ];
 
 const serviceOptions = [
-  'Wrapping',
-  'Window & Light Tinting', 
-  'Caliper Painting',
-  'Carbon Fibre Wraps',
-  'Paint Protection Film',
-  'CeramicPRO Coating',
-  'De-chroming',
-  'Interior Wraps',
-  'Commercial',
-  'Design'
+  'INFeel Architectural Finish Films',
+  'DecoBlu Luxury Vinyl Flooring',
+  'DecoBlu Window Films',
+  'POV Window Films',
+  'Woven by Elite'
 ];
 
 const socialLinks = [
@@ -116,10 +111,10 @@ export default function Contact() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground mb-2">Call us directly</p>
-                  <a href="tel:+15551239727" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
-                    (555) 123-WRAP
+                  <a href="tel:+19542708598" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
+                    (954) 270-8598
                   </a>
-                  <p className="text-sm text-muted-foreground mt-1">Monday - Friday: 8:00 AM - 6:00 PM</p>
+                  <p className="text-sm text-muted-foreground mt-1">Monday - Friday 7AM - 3:00 PM EST</p>
                 </CardContent>
               </Card>
             </ScrollAnimation>
@@ -156,42 +151,14 @@ export default function Contact() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground mb-2">Visit our showroom</p>
-                  <p className="text-foreground font-semibold">123 Vinyl Wrap Street</p>
-                  <p className="text-foreground">Los Angeles, CA 90210</p>
-                </CardContent>
-              </Card>
-            </ScrollAnimation>
-
-            {/* Services Quick Links */}
-            <ScrollAnimation direction="left" delay={0.3}>
-              <Card className="hover-elevate transition-all duration-300">
-                <CardHeader className="pb-4">
-                  <CardTitle>Our Services</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {serviceOptions.slice(0, 6).map((service, index) => (
-                      <a
-                        key={index}
-                        href="/products"
-                        className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        • {service}
-                      </a>
-                    ))}
-                    <a
-                      href="/products"
-                      className="block text-sm text-primary font-medium hover:underline"
-                    >
-                      View all services →
-                    </a>
-                  </div>
+                  <p className="text-foreground font-semibold">1249 Stirling Rd STE 9</p>
+                  <p className="text-foreground">Dania Beach, FL 33004, United States</p>
                 </CardContent>
               </Card>
             </ScrollAnimation>
 
             {/* Social Media */}
-            <ScrollAnimation direction="left" delay={0.4}>
+            <ScrollAnimation direction="left" delay={0.3}>
               <Card className="hover-elevate transition-all duration-300">
                 <CardHeader className="pb-4">
                   <CardTitle>Follow Us</CardTitle>
