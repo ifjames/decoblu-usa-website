@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import heroImage from "@assets/hero bg3.jpg";
-import logoImage from "@assets/decoblu text logo.png";
 
 export default function Hero() {
   const [location, setLocation] = useLocation();
@@ -55,28 +54,10 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
-          {/* Logo with animation (play once only) */}
-          <motion.div
-            className="flex justify-center mb-8"
-            initial={
-              animationPlayed
-                ? { opacity: 1, scale: 1 }
-                : { opacity: 0, scale: 0.5 }
-            }
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: animationPlayed ? 0 : 1, ease: "easeOut" }}
-          >
-            <img
-              src={logoImage}
-              alt="DecoBlu USA Logo"
-              className="h-20 md:h-24 lg:h-36 w-auto"
-              data-testid="img-logo"
-            />
-          </motion.div>
-
           {/* Tagline */}
           <motion.h1
-            className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight"
+            className="font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-12 leading-tight tracking-wide"
+            style={{ fontFamily: "'Cinzel', serif" }}
             initial={
               animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
             }
@@ -86,26 +67,8 @@ export default function Hero() {
               delay: animationPlayed ? 0 : 0.2,
             }}
           >
-            <span className="block text-primary">Transforming Surfaces</span>
+            <span className="block">Transforming Surfaces</span>
           </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed"
-            initial={
-              animationPlayed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-            }
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: animationPlayed ? 0 : 0.8,
-              delay: animationPlayed ? 0 : 0.4,
-            }}
-            data-testid="text-hero-subheading"
-          >
-            Professional architectural vinyl solutions for cabinets, walls,
-            ceilings, and interior spaces. Transform any surface with premium
-            quality wraps.
-          </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
