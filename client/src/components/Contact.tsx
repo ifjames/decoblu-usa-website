@@ -66,19 +66,64 @@ export default function Contact() {
   });
 
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
+    // Clear any previous error when user starts typing
+    if (submitError) setSubmitError(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    setSuccessDialogOpen(true);
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // Validate email confirmation
+      if (formData.email !== formData.confirmEmail) {
+        setSubmitError('Email addresses do not match');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSuccessDialogOpen(true);
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          phone: '',
+          email: '',
+          confirmEmail: '',
+          vehicleMakeModel: '',
+          registration: '',
+          services: '',
+          message: ''
+        });
+      } else {
+        setSubmitError(result.message || 'Failed to submit form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -189,7 +234,7 @@ export default function Contact() {
             <ScrollAnimation direction="right" delay={0.1}>
               <Card className="hover-elevate transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-heading">Request a Quote</CardTitle>
+                  <CardTitle className="text-2xl font-heading">Contact Us</CardTitle>
                   <p className="text-muted-foreground">
                     Fill out the form below and we'll get back to you with a personalized quote within 24 hours.
                   </p>
@@ -316,12 +361,19 @@ export default function Contact() {
                     </div>
 
                     {/* Submit Button */}
+                    {submitError && (
+                      <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <p className="text-red-700 text-sm">{submitError}</p>
+                      </div>
+                    )}
+                    
                     <Button 
                       type="submit" 
                       size="lg"
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                      disabled={isSubmitting}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground disabled:opacity-50"
                     >
-                      Submit Quote Request
+                      {isSubmitting ? 'Sending...' : 'Submit Quote Request'}
                     </Button>
                   </form>
                 </CardContent>

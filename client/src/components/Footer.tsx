@@ -45,7 +45,7 @@ export default function Footer() {
                 </div>
               </Link>
               <p className="text-gray-300 mb-6 max-w-md">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Premium vinyl wrap specialists transforming vehicles across the United States.
+                We delivers fast, cost-efficient, and sustainable renovations with zero waste. We specialize in turnkey projects and cladding, completing work without demolition or downtime so buildings stay operational.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => {
@@ -139,7 +139,7 @@ export default function Footer() {
                 <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
                 
                 <h3 className="font-semibold text-foreground">Contact Us</h3>
-                <p>If you have any questions about this Privacy Policy, please contact us at privacy@decobluusa.com or (555) 123-WRAP.</p>
+                <p>If you have any questions about this Privacy Policy, please contact us at privacy@decobluusa.com or (954) 270-8598.</p>
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -176,7 +176,7 @@ export default function Footer() {
                 <p>DecoBlu USA's liability shall not exceed the total amount paid for the specific service that gave rise to the claim.</p>
                 
                 <h3 className="font-semibold text-foreground">Contact Information</h3>
-                <p>For questions regarding these terms, contact us at legal@decobluusa.com or (555) 123-WRAP.</p>
+                <p>For questions regarding these terms, contact us at legal@decobluusa.com or (954) 270-8598.</p>
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -214,7 +214,7 @@ export default function Footer() {
                 <p>You can control and manage cookies through your browser settings. However, please note that disabling certain cookies may affect the functionality of our website.</p>
                 
                 <h3 className="font-semibold text-foreground">Contact Us</h3>
-                <p>If you have questions about our use of cookies, please contact us at privacy@decobluusa.com.</p>
+                <p>If you have questions about our use of cookies, please contact us at contact@decobluusa.com.</p>
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>

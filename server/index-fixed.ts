@@ -53,9 +53,9 @@ app.use((req, res, next) => {
 // Setup static file serving for production
 function serveStatic(app: express.Express) {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
-  const clientDistPath = path.resolve(__dirname, "public");
+  const clientDistPath = path.resolve(__dirname, "..", "client", "dist");
   
-  // Serve static files from public directory
+  // Serve static files from client/dist
   app.use(express.static(clientDistPath));
   
   // Fallback to index.html for SPA routing (but not for API routes)
@@ -67,18 +67,10 @@ function serveStatic(app: express.Express) {
   });
 }
 
-// Setup Vite for development only
-async function setupViteDevelopment(app: express.Express, server: any) {
-  // Dynamic import only in development
-  if (process.env.NODE_ENV !== "production") {
-    try {
-      const { setupVite } = await import("./vite.js");
-      await setupVite(app, server);
-    } catch (error) {
-      log("Vite setup failed, falling back to static serving", "dev");
-      serveStatic(app);
-    }
-  }
+// Setup Vite for development
+async function setupVite(app: express.Express, server: any) {
+  const { setupVite: setupViteDev } = await import("./vite");
+  await setupViteDev(app, server);
 }
 
 (async () => {
@@ -100,7 +92,7 @@ async function setupViteDevelopment(app: express.Express, server: any) {
       serveStatic(app);
     } else {
       log("Setting up Vite development server", "setup");
-      await setupViteDevelopment(app, server);
+      await setupVite(app, server);
     }
 
     // Start the server
