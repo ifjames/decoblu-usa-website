@@ -107,7 +107,19 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 lg:h-24">
           {/* Logo - Icon + Text */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link 
+            href="/" 
+            className="flex items-center gap-3"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault();
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+          >
             <img
               src={logoIcon}
               alt="DecoBlu Icon"
