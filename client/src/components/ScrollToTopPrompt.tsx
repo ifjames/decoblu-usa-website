@@ -24,6 +24,12 @@ export default function ScrollToTopPrompt({
   }, [location]);
 
   useEffect(() => {
+    if (!isAtBottom) {
+      setIsDismissed(false);
+    }
+  }, [isAtBottom]);
+
+  useEffect(() => {
     if (isAtBottom && !isDismissed) {
       setShowPrompt(true);
 
