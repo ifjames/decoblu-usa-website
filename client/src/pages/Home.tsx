@@ -5,6 +5,7 @@ import About from '@/components/About';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
+import ScrollToTopPrompt from '@/components/ScrollToTopPrompt';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <About />
       <Testimonials />
       <Footer />
+      <ScrollToTopPrompt threshold={150} />
     </div>
   );
 }
