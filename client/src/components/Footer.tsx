@@ -10,7 +10,6 @@ import {
   AlertDialogHeader, 
   AlertDialogTitle 
 } from '@/components/ui/alert-dialog';
-import logoText from '@assets/decoblu text logo.png';
 
 const footerLinks = {
   company: [
@@ -40,12 +39,10 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:col-span-2">
               <Link href="/" className="inline-block mb-4">
-                <img
-                  src={logoText}
-                  alt="DecoBlu USA"
-                  className="h-12 w-auto"
-                  data-testid="img-footer-logo"
-                />
+                <div className="font-heading font-bold text-3xl">
+                  <span className="text-primary">DecoBlu</span>
+                  <span className="text-gray-400"> USA</span>
+                </div>
               </Link>
               <p className="text-gray-300 mb-6 max-w-md">
                 We delivers fast, cost-efficient, and sustainable renovations with zero waste. We specialize in turnkey projects and cladding, completing work without demolition or downtime so buildings stay operational.
